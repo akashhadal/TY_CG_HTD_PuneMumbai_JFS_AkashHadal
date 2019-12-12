@@ -1,0 +1,101 @@
+<!-- <h1>{{todaysDate|date:'full'|uppercase}}</h1> -->
+
+<!-- <div class="col-md-4 offset-4 mt-2">
+    <input type="search" name="search" [(ngModel)]='search' class="form-control" placeholder="Enter Product name">
+</div> -->
+
+<div class="col-md-10 offset-1 mt-5">
+    <table class="table table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>Product Id</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let product of productService.products'>
+                <td>{{product.productId}}</td>
+                <td>{{product.productName}}</td>
+                <td>{{product.category}}</td>
+                <td>{{product.price}}</td>
+                <td>
+                    <button class="btn btn-outline-info" (click)='deleteProduct(product.productId)'>
+                        Delete
+                    </button>
+                </td>
+                <td>
+                     <!-- Button trigger modal -->
+                     <button type="button" class="btn btn-primary" data-toggle="modal" 
+                     data-target="#exampleModal"
+                         (click)='selectProduct(product)'>
+                         Update
+                     </button>
+ 
+                     <!-- Modal -->
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                         <div class="modal-dialog" role="document">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title" id="exampleModalLabel">Update Product...</h5>
+                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                         (click)='productService.getData()'>
+                                         <span aria-hidden="true">&times;</span>
+                                     </button>
+                                 </div>
+                                 <div class="modal-body">
+                                     <form #updateProduct="ngForm" (ngSubmit)="submitForm(updateProduct)">
+                                         <!-- <input type="hidden" name="pk" #pk='ngModel' [(ngModel)]='selectedEmployee.pk'> -->
+                                         <div class="form-group">
+                                             <label for="productId">Product Id</label>
+                                             <input type="number" name="productId" class="form-control"
+                                                 placeholder="Enter Employee Id" #productId="ngModel"
+                                                 [(ngModel)]="selectedProduct.productId" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="productName">Product Name</label>
+                                             <input type="text" name="productName" class="form-control"
+                                                 placeholder="Enter product Name" #productName="ngModel"
+                                                 [(ngModel)]="selectedProduct.productName" required>
+                                         </div>
+                                         <div class="form-group">
+                                             <label for="price">Price</label>
+                                             <input type="number" class="form-control" name="price"
+                                                 placeholder="Enter price" #price="ngModel"
+                                                 [(ngModel)]="selectedProduct.price" required>
+                                         </div>
+                                         <div class="form-group">
+                                                <label for="categoy">Product Category</label>
+                                                <select class="custom-select" name="category" #category="ngModel" [(ngModel)]="selectedProduct.category" required>
+                                                    <option></option>
+                                                    <option>Antipyretics</option>
+                                                    <option>Analgesics</option>
+                                                    <option>Antimalarial drugs</option>
+                                                    <option>Antibiotics</option>
+                                                    <option>Antiseptics</option>
+                                                    <option>Mood stabilizers</option>
+                                                </select>
+                                            </div>
+                                         <div class="btn-group">
+                                             <button type="submit" class="btn btn-outline-primary float-right"
+                                                 [disabled]="updateProduct.invalid">
+                                                 Submit
+                                             </button>
+                                             <button type="reset" class="btn btn-outline-primary  float-right">
+                                                 Reset
+                                             </button>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

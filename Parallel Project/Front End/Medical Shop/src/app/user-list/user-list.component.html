@@ -1,0 +1,28 @@
+<div class="col-md-10 offset-1 mt-5">
+    <table class="table table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>User Id</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>Role</th>
+                <th>User Password</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let userList of medicalService.userDetailsList'>
+                <td>{{userList.userId}}</td>
+                <td>{{userList.userName}}</td>
+                <td>{{userList.userEmail}}</td>
+                <td>{{userList.role}}</td>
+                <td>{{userList.userPassword}}</td>
+                <td>
+                    <button class="btn btn-outline-info" (click)='deleteUser(userList.userId)'>
+                        Delete
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

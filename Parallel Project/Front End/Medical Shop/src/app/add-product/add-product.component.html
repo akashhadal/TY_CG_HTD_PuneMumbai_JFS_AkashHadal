@@ -1,0 +1,45 @@
+<div class="col-md-6 offset-3 mt-3">
+        <form #addProduct="ngForm" (ngSubmit)='addInfo(addProduct)'>
+            <div class="form-group">
+                <h3>Add Product</h3>
+            </div>
+            <div class="form-group">
+                <label for="productId">Product Id</label>
+                <input type="number" name="productId" #productId="ngModel" ngModel required class="form-control"
+                    placeholder="Enter Product id">
+            </div>
+            <div class="form-group">
+                    <label for="productName">Product Name</label>
+                    <input type="text" name="productName" #productName="ngModel" ngModel required class="form-control"
+                        placeholder="Enter Product Name">
+                </div>
+            <div class="form-group">
+                <label for="categoy">Product Category</label>
+                <select class="custom-select" name="category" #category="ngModel" ngModel required>
+                    <option></option>
+                    <option>Antipyretics</option>
+                    <option>Analgesics</option>
+                    <option>Antimalarial drugs</option>
+                    <option>Antibiotics</option>
+                    <option>Antiseptics</option>
+                    <option>Mood stabilizers</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="price">Enter Price</label>
+                <input type="number" class="form-control" name="price" #price="ngModel" ngModel required
+                    placeholder="Enter Price">
+            </div>
+            <!-- <div class="form-group">
+                <label for="imgUrl">Product Img Url</label>
+                <input type="url" class="form-control" name="imgUrl" #imgUrl="ngModel" ngModel required
+                    placeholder="Enter Image Url">
+            </div> -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-primary" [disabled]='addProduct.invalid'>
+                    Submit</button>
+                <button type="submit" class="btn btn-outline-danger">Reset</button>
+            </div>
+        </form>
+    </div>
+    
