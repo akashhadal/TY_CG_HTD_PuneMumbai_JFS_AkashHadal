@@ -37,30 +37,6 @@ public class Payment {
 		scanner.nextLine();
 		System.out.println("Enter Your Name On Card");
 		scanner.nextLine();
-
-		validation = true;
-		while (validation) {
-			System.out.println("Expiry Month: ");
-			int month1 = scanner.nextInt();
-			try {
-				int month = exceptionsMethods.checkMonth(month1);
-				validation = false;
-			} catch (OMSException e) {
-				e.getMessage();
-			}
-		}
-
-		validation = true;
-		while (validation) {
-			System.out.print("Expiry Year: ");
-			String year1 = scanner.next();
-			try {
-				int year = ExceptionsMethods.checkYear(year1);
-				validation = false;
-			} catch (OMSException e) {
-				e.getMessage();
-			}
-		}
 		
 		validation = true;
 		while (validation) {
@@ -75,9 +51,8 @@ public class Payment {
 		}
 
 		System.out.println("Total Bill is = " + cartServices.totalBill(userBean.getUserId()));
-		System.out.println("TRANSACTION IS SUCCESSFULL");
-		System.out.println("***THANK YOU FOR ORDERING***");
-
+		System.out.println("Transaction is Completed");
+		
 	}// End of payment()
 
 }// End of Class

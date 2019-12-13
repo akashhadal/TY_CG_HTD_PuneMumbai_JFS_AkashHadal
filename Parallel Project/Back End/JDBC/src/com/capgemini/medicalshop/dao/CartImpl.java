@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -186,6 +187,28 @@ public class CartImpl implements CartDao {
 		}
 		
 		return isAdded;
+	}
+
+	@Override
+	public List<OrderBean> list(int userId) {
+		try (Connection conn = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("user"),
+				prop.getProperty("password"));PreparedStatement pstmt=conn.prepareStatement(prop.getProperty("queryc9"))) {
+
+			pstmt.setInt(1, userId);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("..................................");
+				System.out.println("Order ID =" + rs.getInt(1));
+				System.out.println("product name = " + rs.getString(5));
+				System.out.println("product price = " + rs.getDouble(6));
+				System.out.println("Address = " + rs.getString(7));
+				System.out.println("..................................");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }// end of class

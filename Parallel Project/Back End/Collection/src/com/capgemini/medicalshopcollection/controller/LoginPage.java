@@ -15,18 +15,18 @@ public class LoginPage {
 	static MedicalServices medicalServices = new MedicalservicesImpl();
 	static ExceptionsMethods exceptionsMethods = new ExceptionsMethods();
 	static Validations validations=new ValidationsImpli();
-	static boolean validation = true;
+	static boolean flag = true;
 	static String emailId;
 
 	public void userLogin() {
 		Scanner scanner = new Scanner(System.in);
-		validation = true;
-		while (validation) {
+		flag = true;
+		while (flag) {
 			System.out.println("Enter Your Email: ");
 			String email = scanner.nextLine();
 			try {
 				emailId = ExceptionsMethods.emailValidator(email);
-				validation = false;
+				flag = false;
 			} catch (OMSException e) {
 				e.getMessage();
 			}

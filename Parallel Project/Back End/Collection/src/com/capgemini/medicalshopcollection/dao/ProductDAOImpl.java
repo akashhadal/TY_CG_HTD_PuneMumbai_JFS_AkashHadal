@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.capgemini.medicalshopcollection.beans.ProductBean;
-import com.capgemini.medicalshopcollection.database.ProductTable;
+import com.capgemini.medicalshopcollection.database.Product;
 
 
 public class ProductDAOImpl implements ProductDAO {
-	ProductTable productTable = new ProductTable();
-	HashMap<Integer, ProductBean> productDb = productTable.productDb;
+	Product product = new Product();
+	HashMap<Integer, ProductBean> productDb = product.product;
 
 	@Override
 	public boolean addProduct(ProductBean productBean) {

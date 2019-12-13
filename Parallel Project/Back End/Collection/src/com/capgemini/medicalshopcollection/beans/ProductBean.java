@@ -1,6 +1,8 @@
 package com.capgemini.medicalshopcollection.beans;
 
-public class ProductBean {
+import java.io.Serializable;
+
+public class ProductBean implements Serializable {
 	private int productId;
 	private String productName;
 	private String productBrand;

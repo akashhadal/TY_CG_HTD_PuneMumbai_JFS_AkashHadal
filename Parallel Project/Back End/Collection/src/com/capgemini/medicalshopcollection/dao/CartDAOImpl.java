@@ -7,14 +7,14 @@ import java.util.List;
 import com.capgemini.medicalshopcollection.beans.CartBean;
 import com.capgemini.medicalshopcollection.beans.ProductBean;
 import com.capgemini.medicalshopcollection.database.CartData;
-import com.capgemini.medicalshopcollection.database.ProductTable;
+import com.capgemini.medicalshopcollection.database.Product;
 
 
 public class CartDAOImpl implements CartDAO {
 	CartData cartData = new CartData();
 	HashMap<Integer, CartBean> cartDb = cartData.cartDb;
-	ProductTable productTable = new ProductTable();
-	HashMap<Integer, ProductBean> productDb = productTable.productDb;
+	Product productTable = new Product();
+	HashMap<Integer, ProductBean> productDb = productTable.product;
 	
 	
 	@Override

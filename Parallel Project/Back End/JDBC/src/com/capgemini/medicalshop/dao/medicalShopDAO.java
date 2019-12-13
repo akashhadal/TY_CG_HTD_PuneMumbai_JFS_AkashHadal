@@ -8,7 +8,7 @@ public interface medicalShopDAO {
 	
 	public int loginUser(String name,String password);
 	
-	public int loginAdmin(String name,String password);
+	public int loginAdmin(String email,String password);
 	
 	public UserBean getAllUser();
 	

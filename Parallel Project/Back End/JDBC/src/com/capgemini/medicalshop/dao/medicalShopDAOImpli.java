@@ -156,13 +156,13 @@ public class medicalShopDAOImpli implements medicalShopDAO {
 	}
 
 	@Override
-	public int loginAdmin(String name, String password) {
+	public int loginAdmin(String email, String password) {
 		int uID = 0;
 		try (Connection conn = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("user"),
 				prop.getProperty("password"));
 				PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("querya1"))) {
 
-			pstmt.setString(1, name);
+			pstmt.setString(1, email);
 
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
