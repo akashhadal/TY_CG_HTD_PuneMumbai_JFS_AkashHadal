@@ -1,4 +1,4 @@
-<div class="col-md-4 offset-4 mt-5">
+<!-- <div class="col-md-4 offset-4 mt-5">
     <form #RegistrationForm="ngForm" (ngSubmit)='RegisterUser(RegistrationForm)'>
         <h3>Registration Page</h3>
         <div class="alert alert-danger" *ngIf='error'>
@@ -36,6 +36,49 @@
             <button type="submit" class="btn btn-outline-info float-right" [disabled]='RegistrationForm.invalid'>
                 Register
             </button>
+        </div>
+    </form>
+</div> -->
+
+<h3 class="offset-md-4 mt-3">Registration Page</h3>
+<div class="col-md-4 offset-md-4 mt-4 card card-body">
+    <form action="" #RegistrationForm="ngForm" (ngSubmit)='RegisterUser(RegistrationForm)'>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">User Id</span>
+            </div>
+            <input type="text" name="userId" #userId='ngModel' ngModel required class="form-control">
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">User Name</span>
+            </div>
+            <input type="text" name="userName" #userName='ngModel' ngModel required class="form-control">
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Email</span>
+            </div>
+            <input type="email" name="userEmail" #userEmail='ngModel' ngModel required class="form-control">
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">password</span>
+            </div>
+            <input type="password" name="userPassword" #userPassword='ngModel' ngModel required class="form-control">
+        </div>
+        <div class="input-group mb-4">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Role</span>
+            </div>
+            <select class="custom-select" name="role" #role="ngModel" ngModel required>
+                <option>Admin</option>
+                <option>User</option>
+            </select>
+        </div>
+        <div class="btn-group">
+            <button type="submit" class="btn btn-outline-primary" [disabled]='RegistrationForm.invalid'>Register</button>
+            <button type="reset" class="btn btn-outline-primary">Reset</button>
         </div>
     </form>
 </div>
