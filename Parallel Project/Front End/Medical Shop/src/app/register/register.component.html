@@ -53,20 +53,43 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">User Name</span>
             </div>
-            <input type="text" name="userName" #userName='ngModel' ngModel required class="form-control">
+            <input type="text" name="userName" #userName='ngModel' ngModel required class="form-control" >
         </div>
         <div class="input-group mb-4">
             <div class="input-group-prepend">
                 <span class="input-group-text">Email</span>
             </div>
-            <input type="email" name="userEmail" #userEmail='ngModel' ngModel required class="form-control">
+            <input type="email" name="userEmail" #userEmail='ngModel' ngModel required class="form-control" email>
         </div>
+        <!-- Email Validation Starts -->
+        <div *ngIf='userEmail.touched && userEmail.invalid'>
+            <p class="text text-danger" *ngIf='userEmail.errors.required'>
+                This Field is Mandatory
+            </p>
+            <p class="text text-warning" *ngIf='userEmail.errors.email'>
+                The Field Accepts Only Emails
+            </p>
+        </div>
+         <!-- Email Validation Ends -->
         <div class="input-group mb-4">
             <div class="input-group-prepend">
                 <span class="input-group-text">password</span>
             </div>
-            <input type="password" name="userPassword" #userPassword='ngModel' ngModel required class="form-control">
+            <input type="password" name="userPassword" #userPassword='ngModel' ngModel required minlength="8" class="form-control">
         </div>
+        <!-- Password Validation Starts -->
+        <div *ngIf='userPassword.touched && userPassword.invalid'>
+            <p class="text text-danger" *ngIf='userPassword.errors.required'>
+                This Field is Mandatory
+            </p>
+            <p class="text text-danger" *ngIf='userPassword.errors.minlength'>
+                Minimum 8 Charaters Required
+            </p>
+            <p class="text text-warning" *ngIf='userPassword.errors.password'>
+                The Field Accepts Only passwords
+            </p>
+        </div>
+        <!-- Password Validation Ends -->
         <div class="input-group mb-4">
             <div class="input-group-prepend">
                 <span class="input-group-text">Role</span>
