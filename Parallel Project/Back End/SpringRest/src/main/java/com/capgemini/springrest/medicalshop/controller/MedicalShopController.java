@@ -1,4 +1,4 @@
- package com.capgemini.springrest.medicalshop.controller;
+package com.capgemini.springrest.medicalshop.controller;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,13 +20,15 @@ import com.capgemini.springrest.medicalshop.beans.MedicalResponse;
 import com.capgemini.springrest.medicalshop.beans.UserBean;
 import com.capgemini.springrest.medicalshop.service.MedicalShopService;
 
+
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MedicalShopController {
 
 	@Autowired
 	private MedicalShopService service;
-	
+	//**************************Front End*********************************************
 	@PutMapping(path = "/registerUser1",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public MedicalResponse Registration1(@RequestBody LoginBean bean) {
 		boolean register=service.registerUser1(bean);
@@ -42,6 +45,23 @@ public class MedicalShopController {
 		return response;
 	}
 	
+	@PostMapping(path = "/login")
+	public MedicalResponse Login(@RequestBody LoginBean loginBean) {
+		LoginBean login=service.login(loginBean.getUserEmail(), loginBean.getUserPassword());
+		MedicalResponse response=new MedicalResponse();
+		if (login!=null) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setLoginBean(login);
+			response.setDescription("Users Logged in........");
+		} else {
+			response.setStatusCode(401);
+			response.setMessage("Failed");
+			response.setDescription("User Login Failed........");
+		}
+		return response;
+	}//End of UserLogin
+	//*****************************Back ENd******************************************
 	@PutMapping(path = "/registerUser",consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
 	public MedicalResponse Registration(@RequestBody UserBean userBean) {
 		boolean register=service.registerUser(userBean);
@@ -58,8 +78,8 @@ public class MedicalShopController {
 		return response;
 	}//End of Registration
 	
-	@PostMapping(path = "/updateUser",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public MedicalResponse updateUser(@RequestBody UserBean bean) {
+	@PostMapping(path = "/updateUser")
+	public MedicalResponse updateUser(@RequestBody LoginBean bean) {
 		boolean update=service.updateUserProfile(bean);
 		MedicalResponse response=new MedicalResponse();
 		if (update) {
@@ -74,8 +94,8 @@ public class MedicalShopController {
 		return response;
 	}//End of updateUser()
 	
-	@DeleteMapping(path = "/deleteUser",produces = MediaType.APPLICATION_JSON_VALUE)
-	public MedicalResponse deleteUser(@RequestParam int userId) {
+	@DeleteMapping(path = "/deleteUser/{userId}")
+	public MedicalResponse deleteUser(@PathVariable("userId") int userId) {
 		boolean delete=service.removeUser(userId);
 		MedicalResponse response=new MedicalResponse();
 		if (delete) {
@@ -104,6 +124,23 @@ public class MedicalShopController {
 			response.setDescription("User Login Failed........");
 		}
 		return response;
+	}
+		
+		@GetMapping(path = "/userProfile/{userId}")
+		public MedicalResponse UserProfile(@PathVariable("userId") int userId) {
+			List<LoginBean> login=service.userProfile(userId);
+			MedicalResponse response=new MedicalResponse();
+			if (login!=null) {
+				response.setStatusCode(201);
+				response.setMessage("Success");
+				response.setLoginBeans(login);
+				response.setDescription("Users Profile Retrived........");
+			} else {
+				response.setStatusCode(401);
+				response.setMessage("Failed");
+				response.setDescription("Users Profile Not Retrived........");
+			}
+			return response;
 	}//End of UserLogin
 	
 	
@@ -123,15 +160,16 @@ public class MedicalShopController {
 		return response;
 	}//End of AdminLogin
 	
-	@GetMapping(path = "/getAllUsers",produces = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE})
+	@GetMapping(path = "/getAllUsers",produces = MediaType.APPLICATION_JSON_VALUE)
 	public MedicalResponse getAllUsers() {
-		List<UserBean> list=service.getAllUser();
+		List<LoginBean> list=service.getAllUser();
 		MedicalResponse response=new MedicalResponse();
 		if (list!=null) {
-			response.setStatusCode(201);
-			response.setMessage("Success");
-			response.setDescription("Users Data Found........");
-			response.setUserList(list);
+			/*
+			 * response.setStatusCode(201); response.setMessage("Success");
+			 * response.setDescription("Users Data Found........");
+			 */
+			response.setLoginBeans(list);
 		} else {
 			response.setStatusCode(401);
 			response.setMessage("Failed");

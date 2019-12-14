@@ -10,6 +10,8 @@ import com.capgemini.springrest.medicalshop.beans.OrderBean;
 import com.capgemini.springrest.medicalshop.beans.Payment;
 import com.capgemini.springrest.medicalshop.dao.CartDao;
 
+
+
 @Service
 public class CartServiceImpli implements CartService {
 
@@ -22,20 +24,36 @@ public class CartServiceImpli implements CartService {
 	}
 
 	@Override
-	public boolean deleteProduct(String pName, int userId) {
-		return cdao.deleteProduct(pName, userId);
+	public boolean deleteProduct(int cartId, int userId) {
+		return cdao.deleteProduct(cartId, userId);
 	}
 
 	@Override
-	public Payment payment(int uId,String button,String address) {
-		return cdao.payment(uId,button,address);
+	public Payment payment(int uId,String address) {
+		return cdao.payment(uId,address);
 	}
 
 	@Override
-	public List<CartBean> cart(int userId) {
-		return cdao.cart(userId);
+	public List<CartBean> getCart(int uId) {
+		return cdao.getCart(uId);
 	}
 
-	
+	@Override
+	public boolean addOrder(OrderBean orderBean) {
+		return cdao.addOrder(orderBean);
+	}
+
+	@Override
+	public List<OrderBean> viewOrder(int userId) {
+		return cdao.viewOrder(userId);
+	}
+
+	@Override
+	public double totalBill(int userId) {
+		return cdao.totalBill(userId);
+	}
+
+
+
 	
 }//End of CartServiceImpli()

@@ -9,6 +9,7 @@ import com.capgemini.springrest.medicalshop.beans.ProductBean;
 import com.capgemini.springrest.medicalshop.dao.ProductDao;
 
 
+
 @Service
 public class ProductServiceImpli implements ProductService {
 

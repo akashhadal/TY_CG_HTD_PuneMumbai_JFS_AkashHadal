@@ -2,8 +2,12 @@ package com.capgemini.springrest.medicalshop.beans;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GeneratorType;
 
 @Entity
 @Table(name = "cart")
@@ -11,6 +15,7 @@ public class CartBean {
 	
 	@Id
 	@Column
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int cartId;
 	
 	@Column
@@ -27,8 +32,6 @@ public class CartBean {
 	
 	@Column
 	private int productId;
-	
-	
 	
 	//getter setter method
 	
@@ -68,8 +71,5 @@ public class CartBean {
 	}
 	public void setProductId(int productId) {
 		this.productId = productId;
-	}
-	
-	
-	
+	} 
 }//end of class

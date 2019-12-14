@@ -11,6 +11,8 @@ import com.capgemini.springrest.medicalshop.beans.UserBean;
 import com.capgemini.springrest.medicalshop.dao.medicalShopDAO;
 
 
+
+
 @Service
 public class MedicalShopSeriveceImpli implements MedicalShopService {
 
@@ -33,12 +35,12 @@ public class MedicalShopSeriveceImpli implements MedicalShopService {
 	}
 
 	@Override
-	public List<UserBean> getAllUser() {
+	public List<LoginBean> getAllUser() {
 		return dao.getAllUser();
 	}
 
 	@Override
-	public boolean updateUserProfile(UserBean userBean) {
+	public boolean updateUserProfile(LoginBean userBean) {
 		return dao.updateUserProfile(userBean);
 	}
 
@@ -50,6 +52,16 @@ public class MedicalShopSeriveceImpli implements MedicalShopService {
 	@Override
 	public boolean registerUser1(LoginBean loginBean) {
 		return dao.registerUser1(loginBean);
+	}
+
+	@Override
+	public LoginBean login(String email, String password) {
+		return dao.login(email, password);
+	}
+
+	@Override
+	public List<LoginBean> userProfile(int userId) {
+		return dao.userProfile(userId);
 	}
 
 	

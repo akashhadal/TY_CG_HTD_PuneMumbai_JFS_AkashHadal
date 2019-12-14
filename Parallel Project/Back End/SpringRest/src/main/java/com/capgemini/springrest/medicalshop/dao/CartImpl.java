@@ -12,54 +12,53 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.capgemini.springrest.medicalshop.beans.CartBean;
+import com.capgemini.springrest.medicalshop.beans.LoginBean;
 import com.capgemini.springrest.medicalshop.beans.OrderBean;
 import com.capgemini.springrest.medicalshop.beans.Payment;
 import com.capgemini.springrest.medicalshop.beans.ProductBean;
-import com.capgemini.springrest.medicalshop.beans.UserBean;
+
 
 @Repository
 public class CartImpl implements CartDao {
 
 	@PersistenceUnit
 	private EntityManagerFactory emf;
-
+	
+	
 	Scanner sc = new Scanner(System.in);
 
 	@Override
 	public boolean addProduct(int uId, String getProductName) {
-		String getuserName = null;
-		// String getProductName = null;
+		String getUserName = null;
 		double getPrice = 0;
-		int getproductId = 0;
+		int getProductId = 0;
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
 
 		// Get user name
-		String jpql = "from UserBean where userId= :userId";
+		String jpql = "from LoginBean where userId= :userId";
 		Query query = manager.createQuery(jpql);
 		query.setParameter("userId", uId);
-		UserBean userBean = (UserBean) query.getSingleResult();
-		getuserName = userBean.getUserName();
+		LoginBean userBean = (LoginBean) query.getSingleResult();
+		getUserName = userBean.getUserName();
 
 		// Get product Id and product price
-		// System.out.println("enter product name ");
-		// getProductName = sc.nextLine();
 		String jpql1 = "from ProductBean where productName= :productName";
 		Query query1 = manager.createQuery(jpql1);
 		query1.setParameter("productName", getProductName);
 		ProductBean productBean = (ProductBean) query1.getSingleResult();
-		getproductId = productBean.getProductId();
+		getProductId = productBean.getProductId();
 		getPrice = productBean.getPrice();
 
 		// Insert into Cart
 		boolean isAdded = false;
 
 		CartBean cartBean = new CartBean();
-		cartBean.setProductId(getproductId);
+		cartBean.setProductId(getProductId);
 		cartBean.setPrice(getPrice);
 		cartBean.setUserId(uId);
 		cartBean.setProductName(getProductName);
-		cartBean.setUserName(getuserName);
+		cartBean.setUserName(getUserName);
 
 		try {
 			trans.begin();
@@ -73,14 +72,14 @@ public class CartImpl implements CartDao {
 	}// end of addproduct()
 
 	@Override
-	public boolean deleteProduct(String pName, int userId) {
+	public boolean deleteProduct(int cartId, int userId) {
 		boolean isDeleted = false;
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
 
-		String jpql = "from CartBean where productName= :productName and userId= :userId";
+		String jpql = "from CartBean where cartId= :cartId and userId= :userId";
 		Query query = manager.createQuery(jpql);
-		query.setParameter("productName", pName);
+		query.setParameter("cartId", cartId);
 		query.setParameter("userId", userId);
 		CartBean cartBean = (CartBean) query.getSingleResult();
 		try {
@@ -94,10 +93,10 @@ public class CartImpl implements CartDao {
 
 		return isDeleted;
 	}// end of deleteproduct()
-
+	
 	@Override
-	public Payment payment(int uId,String button,String address) {
-		String button1=button;
+	public Payment payment(int uId,String address) {
+		String button1="y";
 		Payment py=new Payment();
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
@@ -110,12 +109,11 @@ public class CartImpl implements CartDao {
 			System.out.println("Total Amount to pay is " + total);
 			py.setPrice(total);
 			System.out.println("Proceed to pay");
-			if (button1.equalsIgnoreCase("y")) {
+			
 				String jpql1 = "from CartBean where UserId= :userId";
 				Query query1 = manager.createQuery(jpql1);
 				query1.setParameter("userId", uId);
 				List<CartBean> cartBeans = query1.getResultList();
-				py.setPaymentStatus("fail");
 				OrderBean orderBean=new OrderBean();
 				for (CartBean cartBean : cartBeans) {
 					orderBean.setOrderId(cartBean.getCartId());
@@ -136,37 +134,27 @@ public class CartImpl implements CartDao {
 					}
 				}
 				System.out.println("Transaction Completed");
-			} else if (button.equalsIgnoreCase("n")) {
-				System.out.println("Transaction Failed");
-				py.setPaymentStatus("fail");
-			}
+			
 		} else {
 			System.out.println("Transaction Failed");
 		}
 
 		return py;
 	}// end of payment
-
+	
 	@Override
-	public List<CartBean> cart(int userId) {
+	public List<CartBean> getCart(int uId) {
 		EntityManager manager = emf.createEntityManager();
-		String jpql = "from CartBean where userId= :userId";
+		String jpql = "from CartBean where userId = :userId ";
 		Query query = manager.createQuery(jpql);
-		query.setParameter("userId", userId);
-		
-		List<CartBean> list = null;
-		try {
-			list = query.getResultList();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return list;
-	}
+		query.setParameter("userId", uId);
 
+		List<CartBean> cartList = query.getResultList();
+		return cartList;
+	}
+	
 	@Override
-	public boolean addOrder(OrderBean orderBean) {
+	public boolean addOrder(OrderBean  orderBean) {
 		boolean isAdded=false;
 		EntityManager manager=emf.createEntityManager();
 		EntityTransaction trans=manager.getTransaction();
@@ -180,5 +168,48 @@ public class CartImpl implements CartDao {
 		}
 		return isAdded;
 	}
+	
+	@Override
+	public boolean insertIntoCart(OrderBean orderBean) {
+		EntityManager manager = emf.createEntityManager();
+		EntityTransaction trans = manager.getTransaction();
+		boolean isAdded=false;
+		try {
+			trans.begin();
+			manager.persist(orderBean);
+			trans.commit();
+			isAdded=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return isAdded;
+	}
+
+	@Override
+	public List<OrderBean> viewOrder(int userId) {
+		EntityManager manager = emf.createEntityManager();
+		String jpql = "from OrderBean where userId = :userId ";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("userId", userId);
+
+		List<OrderBean> list = query.getResultList();
+		
+		return list;
+	}
+
+	@Override
+	public double totalBill(int userId) {
+		
+		EntityManager manager = emf.createEntityManager();
+		EntityTransaction trans = manager.getTransaction();
+		String jpql = "SELECT sum(price) from CartBean where userId= :userId";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("userId", userId);
+		double total = (double) query.getSingleResult();
+		
+		return total;
+	}
+
+	
 
 }// end of class

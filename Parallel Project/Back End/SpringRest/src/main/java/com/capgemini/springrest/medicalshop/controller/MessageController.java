@@ -2,19 +2,20 @@ package com.capgemini.springrest.medicalshop.controller;
 
 import java.util.List;
 
-import javax.annotation.processing.Messager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.springrest.medicalshop.beans.MedicalResponse;
 import com.capgemini.springrest.medicalshop.beans.MessageBean;
 import com.capgemini.springrest.medicalshop.service.MessageService;
+
+
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -28,10 +29,11 @@ public MedicalResponse getAdminMessage() {
 	List<MessageBean> messageBeans=mService.getMessage();
 	MedicalResponse response=new MedicalResponse();
 	if (messageBeans!=null) {
-		response.setStatusCode(201);
-		response.setMessage("Success");
+			/*
+			 * response.setStatusCode(201); response.setMessage("Success");
+			 * response.setDescription("User Queries acquired.......");
+			 */
 		response.setMessageBeans(messageBeans);
-		response.setDescription("User Queries acquired.......");
 	} else {
 		response.setStatusCode(401);
 		response.setMessage("Failed");
@@ -40,8 +42,8 @@ public MedicalResponse getAdminMessage() {
 	return response;
 }//End of getAdminMessage()
 
-@GetMapping(path = "/getUserMessage",produces = MediaType.APPLICATION_JSON_VALUE)
-public MedicalResponse getUserMessage(@RequestParam int userId) {
+@GetMapping(path = "/getUserMessage/{userId}")
+public MedicalResponse getUserMessage(@PathVariable("userId") int userId) {
 	List<MessageBean> messageBeans=mService.getResponse(userId);
 	MedicalResponse response=new MedicalResponse();
 	if (messageBeans!=null) {
@@ -57,9 +59,9 @@ public MedicalResponse getUserMessage(@RequestParam int userId) {
 	return response;
 }//End of getUserMessage()
 
-@PutMapping(path = "/adminResponse",produces = MediaType.APPLICATION_JSON_VALUE)
-public MedicalResponse adminResponse(@RequestParam int userId,@RequestParam String message,@RequestParam String type) {
-	boolean sent=mService.sendMessage(message, type, userId);
+@PutMapping(path = "/adminResponse")
+public MedicalResponse adminResponse(@RequestBody MessageBean messageBean) {
+	boolean sent=mService.sendMessage(messageBean.getMessage(), messageBean.getType(), messageBean.getUserId());
 	MedicalResponse response=new MedicalResponse();
 	if (sent) {
 		response.setStatusCode(201);
@@ -73,9 +75,9 @@ public MedicalResponse adminResponse(@RequestParam int userId,@RequestParam Stri
 	return response;
 }//End of adminResponse()
 	
-@PutMapping(path = "/userResponse")
-public MedicalResponse userResponse(@RequestParam int userId,@RequestParam String message,@RequestParam String type) {
-	boolean sent=mService.sendMessage(message, type, userId);
+@PutMapping(path = "/userQuery")
+public MedicalResponse userQuery(@RequestBody MessageBean bean) {
+	boolean sent=mService.sendMessage(bean.getMessage(), bean.getType(), bean.getUserId());
 	MedicalResponse response=new MedicalResponse();
 	if (sent) {
 		response.setStatusCode(201);

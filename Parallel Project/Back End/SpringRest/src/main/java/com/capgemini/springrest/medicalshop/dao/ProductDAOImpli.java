@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.capgemini.springrest.medicalshop.beans.ProductBean;
 
 
+
+
 @Repository
 public class ProductDAOImpli implements ProductDao {
 
@@ -49,6 +51,7 @@ public class ProductDAOImpli implements ProductDao {
 			if (name != null) {
 				bean.setProductName(name);
 			}
+			
 			int id=productBean.getProductId();
 			if (id >0) {
 				bean.setProductId(id);

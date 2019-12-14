@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.capgemini.springrest.medicalshop.beans.MessageBean;
 import com.capgemini.springrest.medicalshop.dao.MessageDao;
 
+
+
 @Service 
 public class MessageServiceImpli implements MessageService {
 

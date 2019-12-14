@@ -17,7 +17,11 @@ public class MedicalResponse {
 	private double price;
 	private MessageBean messageBean;
 	private List<MessageBean> messageBeans;
+	private LoginBean loginBean;
+	private List<LoginBean> loginBeans;
+	private CartBean cartBean;
 	private List<CartBean> cartBeans;
+	private List<OrderBean> orderBeans;
 	
 	//Getters and Setters
 	public int getStatusCode() {
@@ -80,13 +84,39 @@ public class MedicalResponse {
 	public void setMessageBeans(List<MessageBean> messageBeans) {
 		this.messageBeans = messageBeans;
 	}
+	public LoginBean getLoginBean() {
+		return loginBean;
+	}
+	public void setLoginBean(LoginBean loginBean) {
+		this.loginBean = loginBean;
+	}
+	public List<LoginBean> getLoginBeans() {
+		return loginBeans;
+	}
+	public void setLoginBeans(List<LoginBean> loginBeans) {
+		this.loginBeans = loginBeans;
+	}
 	public List<CartBean> getCartBeans() {
 		return cartBeans;
 	}
 	public void setCartBeans(List<CartBean> cartBeans) {
 		this.cartBeans = cartBeans;
 	}
-
+	public CartBean getCartBean() {
+		return cartBean;
+	}
+	public void setCartBean(CartBean cartBean) {
+		this.cartBean = cartBean;
+	}
+	public List<OrderBean> getOrderBeans() {
+		return orderBeans;
+	}
+	public void setOrderBeans(List<OrderBean> orderBeans) {
+		this.orderBeans = orderBeans;
+	}
+	
+	
+	
 	
 	
 }//End of Response

@@ -5,6 +5,8 @@ import java.util.List;
 import com.capgemini.springrest.medicalshop.beans.MessageBean;
 
 
+
+
 public interface MessageDao {
 
 	public boolean sendMessage(String message, String type, int uId);

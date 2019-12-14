@@ -5,6 +5,8 @@ import java.util.List;
 import com.capgemini.springrest.medicalshop.beans.ProductBean;
 
 
+
+
 public interface ProductService {
 
 	public boolean addProduct(ProductBean productBean);

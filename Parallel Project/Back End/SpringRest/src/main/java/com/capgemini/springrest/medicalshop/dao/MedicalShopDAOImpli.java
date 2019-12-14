@@ -15,6 +15,8 @@ import com.capgemini.springrest.medicalshop.beans.LoginBean;
 import com.capgemini.springrest.medicalshop.beans.UserBean;
 
 
+
+
 @Repository
 public class MedicalShopDAOImpli implements medicalShopDAO {
 
@@ -79,12 +81,14 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 	}// End of loginAdmin()
 
 	@Override
-	public List<UserBean> getAllUser() {
+	public List<LoginBean> getAllUser() {
+		String role="User";
 		EntityManager manager = emf.createEntityManager();
-		String jpql = "from UserBean";
+		String jpql = "from LoginBean where role= :role";
 		Query query = manager.createQuery(jpql);
+		query.setParameter("role", role);
 		
-		List<UserBean> userList = null;
+		List<LoginBean> userList = null;
 		try {
 			userList = query.getResultList();
 			
@@ -96,26 +100,26 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 	}//End of getAllUsers()
 
 	@Override
-	public boolean updateUserProfile(UserBean userBean) {
+	public boolean updateUserProfile(LoginBean loginBean) {
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
-		UserBean bean = manager.find(UserBean.class, userBean.getUserId());
+		LoginBean bean = manager.find(LoginBean.class, loginBean.getUserId());
 		boolean isUpdate = false;
 
 		if (bean != null) {
-			String name = userBean.getUserName();
+			String name = loginBean.getUserName();
 			if (name != null) {
 				bean.setUserName(name);
 			}
-			int id=userBean.getUserId();
+			int id=loginBean.getUserId();
 			if (id >0) {
 				bean.setUserId(id);
 			}
-			String email=userBean.getUserEmail();
+			String email=loginBean.getUserEmail();
 			if (email!=null) {
 				bean.setUserEmail(email);
 			}	
-			String password=userBean.getUserPassword();
+			String password=loginBean.getUserPassword();
 			if (password!=null) {
 				bean.setUserPassword(password);
 			}
@@ -141,7 +145,7 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 		try {
 			EntityTransaction tx = entityManager.getTransaction();
 			tx.begin();
-			UserBean userBean= entityManager.find(UserBean.class, userId);
+			LoginBean userBean= entityManager.find(LoginBean.class, userId);
 			entityManager.remove(userBean);
 			tx.commit();
 			isDeleted = true;
@@ -160,7 +164,6 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 		EntityTransaction trans = manager.getTransaction();
 		boolean isAdded = false;
 		
-
 		try {
 			trans.begin();
 			manager.persist(loginBean);
@@ -171,6 +174,43 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 		}
 		manager.close();
 		return isAdded;
+	}
+
+	@Override
+	public LoginBean login(String email, String password) {
+		EntityManager manager = emf.createEntityManager();
+
+		String jpql = "from LoginBean where userEmail= :userEmail and userPassword= :userPassword";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("userEmail", email);
+		query.setParameter("userPassword", password);
+
+		LoginBean user = null;
+		try {
+			user = (LoginBean) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+
+	@Override
+	public List<LoginBean> userProfile(int userId) {
+		
+		EntityManager manager = emf.createEntityManager();
+		String jpql = "from LoginBean where userId= :userId";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("userId", userId);
+		
+		List<LoginBean> userList = null;
+		try {
+			userList =  query.getResultList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return userList;
 	}
 
 }//End of Impli()
