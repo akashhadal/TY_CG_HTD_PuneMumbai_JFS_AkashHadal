@@ -200,4 +200,29 @@ public class medicalShopDAOImpli implements medicalShopDAO {
 		return false;
 	}
 
+	@Override
+	public boolean registerAdmin(int id, String name, String email, String password) {
+		boolean isRegistered=false;
+		try(Connection conn = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("user"),
+				prop.getProperty("password"));
+				PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("querya3"))) {
+			
+			pstmt.setInt(1, id);
+			pstmt.setString(2, name);
+			pstmt.setString(3, email);
+			pstmt.setString(4, password);
+			try {
+				int count = pstmt.executeUpdate();
+				System.out.println("Admin Registered........");
+				isRegistered=true;
+			} catch (Exception e) {
+				System.out.println("Admin not Registered");
+			}
+			
+		} catch (Exception e) {
+			System.out.println("Failed to load.....");
+		}
+		return isRegistered;
+	}
+
 }// End of Class

@@ -27,7 +27,9 @@ public class ValidationsImpli implements Validations {
 	public String emailIdValidate(String email) {
 		Pattern pat = Pattern.compile("\\w+\\@\\w+\\.\\w+");
 		Matcher mat = pat.matcher(email);
-		if (mat.matches()) {
+		Pattern pat1 = Pattern.compile("\\w+\\.\\w+\\@\\w+\\.\\w+");
+		Matcher mat1 = pat1.matcher(email);
+		if (mat.matches() || mat1.matches()) {
 			return email;
 		} else {
 			return null;

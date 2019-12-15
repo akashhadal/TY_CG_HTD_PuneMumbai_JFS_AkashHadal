@@ -6,6 +6,8 @@ import com.capgemini.medicalshop.bean.ProductBean;
 import com.capgemini.medicalshop.bean.UserBean;
 import com.capgemini.medicalshop.dao.ProductDao;
 import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.exception.ExceptionsMethods;
+import com.capgemini.medicalshop.exception.OMSException;
 import com.capgemini.medicalshop.factory.ProductFactory;
 import com.capgemini.medicalshop.factory.medicalShopFactory;
 
@@ -20,8 +22,15 @@ public class UserLogin {
 		System.out.println("press 1 to See Product");
 		System.out.println("press 2 to Login");
 		System.out.println("press 3 to Register");
-
-		int userButton = Integer.parseInt(sc.nextLine());
+		
+		String choice=sc.nextLine();
+		int userButton=0;
+		try {
+			userButton = ExceptionsMethods.numberValidation(choice);
+		} catch (OMSException e) {
+			e.getMessage();
+			user();
+		}
 
 		if (userButton == 1) {
 
@@ -32,7 +41,14 @@ public class UserLogin {
 			String name = sc.nextLine();
 
 			System.out.println("Enter User Password");
-			String password = sc.nextLine();
+			String choicePassword = sc.nextLine();
+			String password=null;
+			try {
+				 password=ExceptionsMethods.checkPassword(choicePassword);
+			} catch (OMSException e) {
+				e.getMessage();
+				user();
+			};
 
 			int userBean2 = medicalShopDAO.loginUser(name, password);
 
@@ -44,29 +60,55 @@ public class UserLogin {
 			}
 		} else if (userButton == 3) {
 			System.out.println("Enter User Id");
-			int userId = sc.nextInt();
-			sc.nextLine();
-
+			int userId = 0;
+			String uId = sc.nextLine();
+			try {
+				 userId=ExceptionsMethods.numberValidation(uId);
+			} catch (OMSException e) {
+				e.getMessage();
+				user();
+			};
 			System.out.println("Enter User Name");
 			String userName = sc.nextLine();
 
 			System.out.println("Enter User Password");
-			String userPassword = sc.nextLine();
-
+			//String userPassword = sc.nextLine();
+			String choicePassword = sc.nextLine();
+			String userPassword=null;
+			try {
+				 userPassword=ExceptionsMethods.checkPassword(choicePassword);
+			} catch (OMSException e) {
+				e.getMessage();
+				user();
+			};
+			
 			System.out.println("Enter User email");
-			String userEmail = sc.nextLine();
+			String userEmail = null;
+			String choiceEmail = sc.nextLine();
+			try {
+				 userEmail=ExceptionsMethods.checkPassword(choiceEmail);
+			} catch (OMSException e) {
+				e.getMessage();
+				user();
+			};
 
 			UserBean bean = medicalShopDAO.registerUser(userId, userName, userEmail, userPassword);
-
 		}
 		System.out.println("enter 'y' to continue");
 		System.out.println("enter 'n' to logout");
-		String button = sc.nextLine();
+		String choiceUser = sc.nextLine();
+		String button=null;
+		try {
+			button=ExceptionsMethods.charValidation(choiceUser);
+		} catch (Exception e) {
+			e.getMessage();
+			user();
+		}
 		if (button.equalsIgnoreCase("y")) {
 			user();
 		} else if (button.equalsIgnoreCase("n")) {
 			System.out.println("successfully logout");
-			return;
+			System.exit(0);
 		}
 	}// End of User
 }// End of class

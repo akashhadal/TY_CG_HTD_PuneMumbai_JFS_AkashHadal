@@ -65,11 +65,11 @@ public class ExceptionsMethods {
 
 	// Method to check CVV
 	public static Integer checkCVV(String cvv) throws OMSException {
-		Integer num1 = validations.year(cvv);
+		Integer num1 = validations.checkCVV(cvv);
 		if (num1 != null) {
 			return num1;
 		} else {
-			throw new OMSException("CVV number should be 4 digits");
+			throw new OMSException("CVV number should be 3 digits");
 		}
 	}
 
@@ -79,7 +79,7 @@ public class ExceptionsMethods {
 		if (password1 != null) {
 			return password1;
 		} else {
-			throw new OMSException("Password must be Minimum of 8 Characters");
+			throw new OMSException("Password must be Minimum 8 Characters");
 		}
 	}
 
@@ -90,6 +90,16 @@ public class ExceptionsMethods {
 			return character1;
 		} else {
 			throw new OMSException("Invalid Input Format\nPlease Enter Single character");
+		}
+	}
+	
+	//Method to check Price
+	public static Double priceValidation(String price) throws OMSException{
+		Double character = validations.doubleValidate(price);
+		if (character != null) {
+			return character;
+		} else {
+			throw new OMSException("Invalid Input Format\nPlease Enter Price in this format Rs 24.12");
 		}
 	}
 }// End of Class

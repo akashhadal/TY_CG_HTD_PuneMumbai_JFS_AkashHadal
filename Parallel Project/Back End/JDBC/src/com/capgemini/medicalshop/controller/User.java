@@ -9,6 +9,8 @@ import com.capgemini.medicalshop.dao.CartDao;
 import com.capgemini.medicalshop.dao.MessageDao;
 import com.capgemini.medicalshop.dao.ProductDao;
 import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.exception.ExceptionsMethods;
+import com.capgemini.medicalshop.exception.OMSException;
 import com.capgemini.medicalshop.factory.CartFactory;
 import com.capgemini.medicalshop.factory.MessageFactory;
 import com.capgemini.medicalshop.factory.ProductFactory;
@@ -32,8 +34,16 @@ public class User {
 		System.out.println("press 5 to see discussion board");
 		System.out.println("Press 6 to logout");
 
-		int userLoginButton = Integer.parseInt(sc.nextLine());
+		int userLoginButton = 0;
+		String choice=sc.nextLine();
+		try {
+			userLoginButton = ExceptionsMethods.numberValidation(choice);
+		} catch (OMSException e) {
+			e.getMessage();
+			userTest(getUid);
+		}
 
+		
 		if (userLoginButton == 1) {
 			ProductBean productBean = productDao.getAllProduct();
 
@@ -47,8 +57,14 @@ public class User {
 
 			System.out.println("press 1 to update");
 			System.out.println("Press 0 to bo back");
-			int button = Integer.parseInt(sc.nextLine());
-
+			int button = 0;
+			String choiceProfile=sc.nextLine();
+			try {
+				button = ExceptionsMethods.numberValidation(choiceProfile);
+			} catch (OMSException e) {
+				e.getMessage();
+				userTest(getUid);
+			}
 			if (button == 1) {
 
 				UserBean userBeanl = medicalShopDAO.updateUserProfile(getUid);
@@ -63,7 +79,14 @@ public class User {
 		else if (userLoginButton == 5) {
 			System.out.println("enter 1 to write query");
 			System.out.println("enter 2 to see response");
-			int button = Integer.parseInt(sc.nextLine());
+			int button = 0;
+			String choiceDiscussion=sc.nextLine();
+			try {
+				userLoginButton = ExceptionsMethods.numberValidation(choiceDiscussion);
+			} catch (OMSException e) {
+				e.getMessage();
+				userTest(getUid);
+			}
 			if (button == 1) {
 				String type = "Question";
 				System.out.println("Enter Your Query");
