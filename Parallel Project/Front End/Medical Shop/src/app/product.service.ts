@@ -34,6 +34,7 @@ export class ProductService {
 
   orders: Order[] = [];
 
+  totalBill = [];
 
   user;
 
@@ -110,4 +111,10 @@ export class ProductService {
     return this.http.post(`${this.api}payment`, payment);
   }
 
+  getTotalBill(userId) {
+    this.http.get<any>(`${this.api}totalBill/${userId}`).subscribe(response => {
+      console.log(response);
+      this.totalBill = response;
+    });
+  }
 }

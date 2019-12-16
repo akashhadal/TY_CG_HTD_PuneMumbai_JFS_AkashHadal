@@ -20,6 +20,7 @@ import { OrderComponent } from './order/order.component';
 import { PaymentComponent } from './payment/payment.component';
 import { UserDiscussionBoardComponent } from './user-discussion-board/user-discussion-board.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     OrderComponent,
     PaymentComponent,
     UserDiscussionBoardComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

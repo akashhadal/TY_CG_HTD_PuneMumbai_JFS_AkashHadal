@@ -7,12 +7,14 @@ import { ProductService } from '../product.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+
   constructor(private product: ProductService) {
     const userDetails = JSON.parse(localStorage.getItem('user'));
     console.log(userDetails.loginBean.userId);
     const user = userDetails.loginBean.userId;
     this.product.getCartData(user);
     console.log(product.carts);
+    this.product.getTotalBill(user);
   }
 
   deleteProductCart(cart) {
@@ -23,6 +25,7 @@ export class CartComponent implements OnInit {
       console.log(userDetails.loginBean.userId);
       const user = userDetails.loginBean.userId;
       this.product.getCartData(user);
+      this.product.getTotalBill(user);
     }, err => {
       console.log(err);
     });

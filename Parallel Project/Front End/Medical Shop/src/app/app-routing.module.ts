@@ -15,6 +15,7 @@ import { OrderComponent } from './order/order.component';
 import { PaymentComponent } from './payment/payment.component';
 import { UserDiscussionBoardComponent } from './user-discussion-board/user-discussion-board.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -32,7 +33,8 @@ const routes: Routes = [
   { path: 'order', component: OrderComponent, canActivate: [AuthGuard], data: { expectedRole: 'User' }},
   { path: 'payment', component: PaymentComponent, canActivate: [AuthGuard], data: { expectedRole: 'User' }},
   { path: 'userDiscussionBoard', component: UserDiscussionBoardComponent, canActivate: [AuthGuard], data: { expectedRole: 'User' }},
-  { path: 'userProfile', component: UserProfileComponent, canActivate: [AuthGuard], data: { expectedRole: 'User' }}
+  { path: 'userProfile', component: UserProfileComponent, canActivate: [AuthGuard], data: { expectedRole: 'User' }},
+  { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
