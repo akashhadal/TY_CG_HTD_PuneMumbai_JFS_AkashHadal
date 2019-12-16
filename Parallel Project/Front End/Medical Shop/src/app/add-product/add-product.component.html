@@ -1,4 +1,5 @@
 <div class="col-md-6 offset-3 mt-3">
+    <div class="card card-body">
         <form #addProduct="ngForm" (ngSubmit)='addInfo(addProduct)'>
             <div class="form-group">
                 <h3>Add Product</h3>
@@ -36,10 +37,11 @@
                     placeholder="Enter Image Url">
             </div> -->
             <div class="form-group">
-                <button type="submit" class="btn btn-outline-primary" [disabled]='addProduct.invalid'>
+                <button type="submit" class="btn btn-success" [disabled]='addProduct.invalid'>
                     Submit</button>
-                <button type="submit" class="btn btn-outline-danger">Reset</button>
+                <button type="submit" class="btn btn-danger">Reset</button>
             </div>
         </form>
+    </div>
     </div>
     

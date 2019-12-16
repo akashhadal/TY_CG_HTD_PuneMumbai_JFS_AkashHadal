@@ -1,5 +1,22 @@
-img {
+/* img {
     height:540px;
     width:200px;
     opacity: 0.8;
-}
+} */
+/* 
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url(/assets/images/14.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 600px;
+  }
+  .font-bold {
+    font-weight: bold;
+  } */
+
+  .strong{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }

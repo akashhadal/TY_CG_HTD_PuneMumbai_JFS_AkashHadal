@@ -10,7 +10,7 @@
                 <th>Delete</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="tbody">
             <tr *ngFor='let userList of medicalService.userDetailsList'>
                 <td>{{userList.userId}}</td>
                 <td>{{userList.userName}}</td>
@@ -18,7 +18,7 @@
                 <td>{{userList.role}}</td>
                 <td>{{userList.userPassword}}</td>
                 <td>
-                    <button class="btn btn-outline-info" (click)='deleteUser(userList.userId)'>
+                    <button class="btn" (click)='deleteUser(userList.userId)'>
                         Delete
                     </button>
                 </td>

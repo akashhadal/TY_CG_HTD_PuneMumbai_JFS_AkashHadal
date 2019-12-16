@@ -1,0 +1,9 @@
+.card{
+    background-image: url(/assets/images/19.jpg);
+    background-size: cover;
+}
+
+.input-group-text{
+    background-color:rgb(165, 156, 156);
+    font-weight: bold;
+}

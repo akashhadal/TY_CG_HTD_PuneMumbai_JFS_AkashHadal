@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
     <div class="well">
         <div class="page-header">
             <h3>Shopping Cart</h3>
@@ -13,13 +13,13 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tbody">
                 <tr *ngFor='let cart of product.carts'>
                     <td>{{cart.productId}}</td>
                     <td>{{cart.productName}}</td>
                     <td>{{cart.price}}</td>
                     <td>
-                        <button class="btn btn-outline-info" (click)='deleteProductCart(cart)'>
+                        <button class="btn btn-danger" (click)='deleteProductCart(cart)'>
                             Delete
                         </button>
                     </td>

@@ -1,6 +1,9 @@
+
+
 <h3 class="offset-md-4 mt-5">Login Page</h3>
+
 <div class="col-md-4 offset-md-4 mt-5 card card-body">
-    <form action="" #loginForm="ngForm" (ngSubmit)='loginUser(loginForm)'>
+    <form action="" #loginForm="ngForm" (ngSubmit)='loginUser(loginForm)' >
         <div class="input-group mb-4">
             <div class="input-group-prepend">
                 <span class="input-group-text" for="userEmail">Email</span>
@@ -10,7 +13,7 @@
         </div>
         <!-- Email Validation Starts -->
         <div *ngIf='userEmail.touched && userEmail.invalid'>
-            <p class="text text-danger" *ngIf='userEmail.errors.required'>
+            <p class="text text-dark" *ngIf='userEmail.errors.required'>
                 This Field is Mandatory
             </p>
             <p class="text text-warning" *ngIf='userEmail.errors.email'>
@@ -39,8 +42,8 @@
     </div>
     <!-- Password Validation Ends -->
         <div class="btn-group">
-            <button type="submit" class="btn btn-outline-primary" [disabled]='loginForm.invalid'>Submit</button>
-            <button type="reset" class="btn btn-outline-primary">Reset</button>
+            <button type="submit" class="btn btn-primary" [disabled]='loginForm.invalid'>Submit</button>
+            <button type="reset" class="btn btn-dark">Reset</button>
         </div>
     </form>
 </div>
