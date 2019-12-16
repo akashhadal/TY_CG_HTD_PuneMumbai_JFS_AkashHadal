@@ -23,8 +23,8 @@ public class CartServiceImpli implements CartService {
 	}
 
 	@Override
-	public boolean deleteProduct(String pName, int userId) {
-		return cdao.deleteProduct(pName, userId);
+	public boolean deleteProduct(int cartId, int userId) {
+		return cdao.deleteProduct(cartId, userId);
 	}
 
 	@Override
@@ -37,14 +37,20 @@ public class CartServiceImpli implements CartService {
 		return cdao.getCart(uId);
 	}
 
-	@Override
-	public boolean addOrder(OrderBean orderBean) {
-		return cdao.addOrder(orderBean);
-	}
 
 	@Override
 	public List<OrderBean> viewOrder(int userId) {
 		return cdao.viewOrder(userId);
+	}
+
+	@Override
+	public double totalBill(int userId) {
+		return cdao.totalBill(userId);
+	}
+
+	@Override
+	public boolean addOrderToHistory(OrderBean orderBean) {
+		return cdao.addToOrderHistory(orderBean);
 	}
 
 

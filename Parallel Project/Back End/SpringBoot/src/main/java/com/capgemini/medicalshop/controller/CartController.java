@@ -42,7 +42,7 @@ public class CartController {
 
 	@PostMapping(path = "/cartDelete")
 	public MedicalResponse cartDelete(@RequestBody CartBean cartBean) {
-		boolean delete = cService.deleteProduct(cartBean.getProductName(), cartBean.getUserId());
+		boolean delete = cService.deleteProduct(cartBean.getCartId(), cartBean.getUserId());
 		MedicalResponse response = new MedicalResponse();
 		if (delete) {
 			response.setStatusCode(201);
@@ -110,4 +110,22 @@ public class CartController {
 
 		return response;
 	}// end of viewOrder()
+	
+	@GetMapping("/totalBill/{userId}")
+	public MedicalResponse totalBill(@PathVariable("userId") int userId) {
+		double bill=cService.totalBill(userId);
+		MedicalResponse response=new MedicalResponse();
+		if (bill >0) {
+			response.setStatusCode(201);
+			response.setMessage("Success");
+			response.setDescription("Total Bill Retrived.......");
+			response.setPrice(bill);
+			
+		} else {
+			response.setStatusCode(401);
+			response.setMessage("Failed");
+			response.setDescription("Failed to retrive........");
+		}
+		return response;
+	}//End of toyalBill
 }// End of CartController()

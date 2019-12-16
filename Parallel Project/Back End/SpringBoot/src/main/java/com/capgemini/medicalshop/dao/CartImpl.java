@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.capgemini.medicalshop.beans.CartBean;
 import com.capgemini.medicalshop.beans.LoginBean;
+import com.capgemini.medicalshop.beans.MedicalResponse;
 import com.capgemini.medicalshop.beans.OrderBean;
 import com.capgemini.medicalshop.beans.Payment;
 import com.capgemini.medicalshop.beans.ProductBean;
@@ -23,8 +24,7 @@ public class CartImpl implements CartDao {
 
 	@PersistenceUnit
 	private EntityManagerFactory emf;
-	
-	
+
 	Scanner sc = new Scanner(System.in);
 
 	@Override
@@ -72,14 +72,14 @@ public class CartImpl implements CartDao {
 	}// end of addproduct()
 
 	@Override
-	public boolean deleteProduct(String pName, int userId) {
+	public boolean deleteProduct(int cartId, int userId) {
 		boolean isDeleted = false;
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
 
-		String jpql = "from CartBean where productName= :productName and userId= :userId";
+		String jpql = "from CartBean where cartId= :cartId and userId= :userId";
 		Query query = manager.createQuery(jpql);
-		query.setParameter("productName", pName);
+		query.setParameter("cartId", cartId);
 		query.setParameter("userId", userId);
 		CartBean cartBean = (CartBean) query.getSingleResult();
 		try {
@@ -94,32 +94,10 @@ public class CartImpl implements CartDao {
 		return isDeleted;
 	}// end of deleteproduct()
 
-	/*
-	 * @Override public Payment payment(int uId) { String button1="y"; Payment
-	 * py=new Payment(); EntityManager manager = emf.createEntityManager();
-	 * EntityTransaction trans = manager.getTransaction(); String jpql =
-	 * "SELECT sum(price) from CartBean where userId= :userId"; Query query =
-	 * manager.createQuery(jpql); query.setParameter("userId", uId); double total =
-	 * (double) query.getSingleResult();
-	 * 
-	 * if (total > 0) {
-	 * 
-	 * String jpql1 = "from CartBean where UserId= :userId"; Query query1 =
-	 * manager.createQuery(jpql1); query1.setParameter("userId", uId);
-	 * List<CartBean> cartBeans = query1.getResultList();
-	 * py.setPaymentStatus("done"); for (CartBean cartBean : cartBeans) {
-	 * trans.begin(); manager.remove(cartBean); trans.commit(); }
-	 * System.out.println("Transaction Completed");
-	 * 
-	 * } else { System.out.println("Transaction Failed"); }
-	 * 
-	 * return py; }// end of payment
-	 */
-	
 	@Override
-	public Payment payment(int uId,String address) {
-		String button1="y";
-		Payment py=new Payment();
+	public Payment payment(int uId, String address) {
+		// String button1="y";
+		Payment payment = new Payment();
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
 		String jpql = "SELECT sum(price) from CartBean where userId= :userId";
@@ -129,41 +107,41 @@ public class CartImpl implements CartDao {
 
 		if (total > 0) {
 			System.out.println("Total Amount to pay is " + total);
-			py.setPrice(total);
+			payment.setPrice(total);
 			System.out.println("Proceed to pay");
-			
-				String jpql1 = "from CartBean where UserId= :userId";
-				Query query1 = manager.createQuery(jpql1);
-				query1.setParameter("userId", uId);
-				List<CartBean> cartBeans = query1.getResultList();
-				OrderBean orderBean=new OrderBean();
-				for (CartBean cartBean : cartBeans) {
-					orderBean.setOrderId(cartBean.getCartId());
-					orderBean.setUserId(cartBean.getUserId());
-					orderBean.setAddress(address);
-					orderBean.setPrice(cartBean.getPrice());
-					orderBean.setProductId(cartBean.getProductId());
-					orderBean.setUserName(cartBean.getUserName());
-					orderBean.setProductName(cartBean.getProductName());
-					boolean order=addOrder(orderBean);
-					if (order) {
-						trans.begin();
-						manager.remove(cartBean);
-						trans.commit();	
-						py.setPaymentStatus("done");
-					} else {
-						System.out.println("Order Failed");
-					}
+
+			String jpql1 = "from CartBean where UserId= :userId";
+			Query query1 = manager.createQuery(jpql1);
+			query1.setParameter("userId", uId);
+			List<CartBean> cartBeans = query1.getResultList();
+			OrderBean orderBean = new OrderBean();
+			for (CartBean cartBean : cartBeans) {
+				orderBean.setOrderId(cartBean.getCartId());
+				orderBean.setUserId(cartBean.getUserId());
+				orderBean.setAddress(address);
+				orderBean.setPrice(cartBean.getPrice());
+				orderBean.setProductId(cartBean.getProductId());
+				orderBean.setUserName(cartBean.getUserName());
+				orderBean.setProductName(cartBean.getProductName());
+				boolean order = addToOrderHistory(orderBean);
+				if (order) {
+					trans.begin();
+					manager.remove(cartBean);
+					trans.commit();
+					payment.setPaymentStatus("done");
+				} else {
+					System.out.println("Order Failed");
 				}
-				System.out.println("Transaction Completed");
-			
+			}
+			System.out.println("Transaction Completed");
+
 		} else {
 			System.out.println("Transaction Failed");
 		}
 
-		return py;
+		return payment;
 	}// end of payment
-	
+
 	@Override
 	public List<CartBean> getCart(int uId) {
 		EntityManager manager = emf.createEntityManager();
@@ -174,33 +152,17 @@ public class CartImpl implements CartDao {
 		List<CartBean> cartList = query.getResultList();
 		return cartList;
 	}
-	
+
 	@Override
-	public boolean addOrder(OrderBean  orderBean) {
-		boolean isAdded=false;
-		EntityManager manager=emf.createEntityManager();
-		EntityTransaction trans=manager.getTransaction();
-		try {
-			trans.begin();
-			manager.persist(orderBean);
-			trans.commit();
-			isAdded=true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return isAdded;
-	}
-	
-	@Override
-	public boolean insertIntoCart(OrderBean orderBean) {
+	public boolean addToOrderHistory(OrderBean orderBean) {
+		boolean isAdded = false;
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
-		boolean isAdded=false;
 		try {
 			trans.begin();
 			manager.persist(orderBean);
 			trans.commit();
-			isAdded=true;
+			isAdded = true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -215,10 +177,21 @@ public class CartImpl implements CartDao {
 		query.setParameter("userId", userId);
 
 		List<OrderBean> list = query.getResultList();
-		
+
 		return list;
 	}
 
-	
+	@Override
+	public double totalBill(int userId) {
+
+		EntityManager manager = emf.createEntityManager();
+		EntityTransaction trans = manager.getTransaction();
+		String jpql = "SELECT sum(price) from CartBean where userId= :userId";
+		Query query = manager.createQuery(jpql);
+		query.setParameter("userId", userId);
+		double total = (double) query.getSingleResult();
+
+		return total;
+	}
 
 }// end of class

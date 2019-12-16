@@ -23,63 +23,6 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 	private EntityManagerFactory emf;
 
 	@Override
-	public boolean registerUser(UserBean userBean) {
-		EntityManager manager = emf.createEntityManager();
-		EntityTransaction trans = manager.getTransaction();
-		boolean isAdded = false;
-		
-
-		try {
-			trans.begin();
-			manager.persist(userBean);
-			trans.commit();
-			isAdded = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		manager.close();
-		return isAdded;
-	}//End of Register User()
-
-	@Override
-	public UserBean loginUser(String name, String password) {
-		EntityManager manager = emf.createEntityManager();
-
-		String jpql = "from UserBean where userName= :userName and userPassword= :userPassword";
-		Query query = manager.createQuery(jpql);
-		query.setParameter("userName", name);
-		query.setParameter("userPassword", password);
-
-		// EmployeeInfoBean employeeInfoBean = null;
-		UserBean userBean = null;
-		try {
-			userBean = (UserBean) query.getSingleResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return userBean;
-	}// End of LoginUser()
-
-	@Override
-	public AdminBean loginAdmin(String name, String password) {
-		EntityManager manager = emf.createEntityManager();
-
-		String jpql = "from AdminBean where adminName= :adminName and adminPassword= :adminPassword";
-		Query query = manager.createQuery(jpql);
-		query.setParameter("adminName", name);
-		query.setParameter("adminPassword", password);
-
-		// EmployeeInfoBean employeeInfoBean = null;
-		AdminBean adminBean = null;
-		try {
-			adminBean = (AdminBean) query.getSingleResult();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return adminBean;
-	}// End of loginAdmin()
-
-	@Override
 	public List<LoginBean> getAllUser() {
 		String role="User";
 		EntityManager manager = emf.createEntityManager();
@@ -158,7 +101,7 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 	}//End of removeUser()
 
 	@Override
-	public boolean registerUser1(LoginBean loginBean) {
+	public boolean registerUser(LoginBean loginBean) {
 		EntityManager manager = emf.createEntityManager();
 		EntityTransaction trans = manager.getTransaction();
 		boolean isAdded = false;
@@ -176,12 +119,12 @@ public class MedicalShopDAOImpli implements medicalShopDAO {
 	}
 
 	@Override
-	public LoginBean login(String name, String password) {
+	public LoginBean login(String email, String password) {
 		EntityManager manager = emf.createEntityManager();
 
-		String jpql = "from LoginBean where userName= :userName and userPassword= :userPassword";
+		String jpql = "from LoginBean where userEmail= :userEmail and userPassword= :userPassword";
 		Query query = manager.createQuery(jpql);
-		query.setParameter("userName", name);
+		query.setParameter("userEmail", email);
 		query.setParameter("userPassword", password);
 
 		LoginBean user = null;

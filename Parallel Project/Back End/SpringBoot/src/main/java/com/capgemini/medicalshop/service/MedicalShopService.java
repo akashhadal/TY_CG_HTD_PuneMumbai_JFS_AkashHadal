@@ -10,15 +10,10 @@ import com.capgemini.medicalshop.beans.UserBean;
 
 public interface MedicalShopService {
 
-	public boolean registerUser(UserBean userBean);
 	
-	public boolean registerUser1(LoginBean loginBean);
-
-	public UserBean loginUser(String name, String password);
+	public boolean registerUser(LoginBean loginBean);
 	
-	public LoginBean login(String name, String password);
-
-	public AdminBean loginAdmin(String name, String password);
+	public LoginBean login(String email, String password);
 
 	public List<LoginBean> getAllUser();
 
