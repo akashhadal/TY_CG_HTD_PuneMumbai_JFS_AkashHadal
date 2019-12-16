@@ -8,19 +8,19 @@ import com.capgemini.medicalshop.bean.UserBean;
 import com.capgemini.medicalshop.dao.CartDao;
 import com.capgemini.medicalshop.dao.MessageDao;
 import com.capgemini.medicalshop.dao.ProductDao;
-import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.dao.MedicalShopDAO;
 import com.capgemini.medicalshop.exception.ExceptionsMethods;
 import com.capgemini.medicalshop.exception.OMSException;
 import com.capgemini.medicalshop.factory.CartFactory;
 import com.capgemini.medicalshop.factory.MessageFactory;
 import com.capgemini.medicalshop.factory.ProductFactory;
-import com.capgemini.medicalshop.factory.medicalShopFactory;
+import com.capgemini.medicalshop.factory.MedicalShopFactory;
 
 public class User {
 
 	Scanner sc = new Scanner(System.in);
 
-	medicalShopDAO medicalShopDAO = medicalShopFactory.getInstance();
+	MedicalShopDAO medicalShopDAO = MedicalShopFactory.getInstance();
 	ProductDao productDao = ProductFactory.getProductInstance();
 	MessageDao messageDao = MessageFactory.getMessageInstance();
 	CartDao cartDao = CartFactory.getCartInstance();

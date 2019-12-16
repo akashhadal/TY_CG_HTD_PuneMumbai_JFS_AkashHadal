@@ -7,17 +7,17 @@ import com.capgemini.medicalshop.bean.ProductBean;
 import com.capgemini.medicalshop.bean.UserBean;
 import com.capgemini.medicalshop.dao.MessageDao;
 import com.capgemini.medicalshop.dao.ProductDao;
-import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.dao.MedicalShopDAO;
 import com.capgemini.medicalshop.exception.ExceptionsMethods;
 import com.capgemini.medicalshop.exception.OMSException;
 import com.capgemini.medicalshop.factory.MessageFactory;
 import com.capgemini.medicalshop.factory.ProductFactory;
-import com.capgemini.medicalshop.factory.medicalShopFactory;
+import com.capgemini.medicalshop.factory.MedicalShopFactory;
 
 public class Admin {
 
 	Scanner sc = new Scanner(System.in);
-	medicalShopDAO dao = medicalShopFactory.getInstance();
+	MedicalShopDAO dao = MedicalShopFactory.getInstance();
 	ProductDao productDao = ProductFactory.getProductInstance();
 	MessageDao messageDao = MessageFactory.getMessageInstance();
 
@@ -72,7 +72,6 @@ public class Admin {
 				e.getMessage();
 				adminTest();
 			}
-			//int pId = Integer.parseInt(sc.nextLine());
 			ProductBean bean2 = productDao.updateProduct(productId);
 
 		} else if (adminButton == 3) {
@@ -85,7 +84,6 @@ public class Admin {
 				e.getMessage();
 				adminTest();
 			}
-			//int pId = Integer.parseInt(sc.nextLine());
 			ProductBean bean3 = productDao.deleteProduct(productId);
 
 		} else if (adminButton == 4) {
@@ -124,7 +122,7 @@ public class Admin {
 			} catch (OMSException e) {
 				e.getMessage();
 				adminTest();
-			}//int uId = Integer.parseInt(sc.nextLine());
+			}
 			if (userId != 0) {
 				String type = "Answer";
 				System.out.println("Enter reply");
@@ -147,7 +145,6 @@ public class Admin {
 			e.getMessage();
 			adminTest();
 		}
-		//String button = sc.nextLine();
 		if (button.equalsIgnoreCase("y")) {
 			adminTest();
 		} else if (button.equalsIgnoreCase("n")) {

@@ -114,7 +114,7 @@ public class CartImpl implements CartDao {
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {
 				System.out.println("total price =" + rs.getDouble(1));
-				System.out.println("Proceed to pay");
+				System.out.println("Proceed to pay"); 
 				System.out.println("Press 'y' to proceed\nPress 'n' to exit");
 				String button = sc.nextLine();
 				
@@ -202,6 +202,27 @@ public class CartImpl implements CartDao {
 				System.out.println("product name = " + rs.getString(5));
 				System.out.println("product price = " + rs.getDouble(6));
 				System.out.println("Address = " + rs.getString(7));
+				System.out.println("..................................");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<CartBean> showCart(int userId) {
+		try (Connection conn = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("user"),
+				prop.getProperty("password"));PreparedStatement pstmt=conn.prepareStatement(prop.getProperty("queryc10"))) {
+
+			pstmt.setInt(1, userId);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				System.out.println("..................................");
+				System.out.println("product ID =" + rs.getInt(3));
+				System.out.println("product name = " + rs.getString(6));
+				System.out.println("product price = " + rs.getDouble(4));
 				System.out.println("..................................");
 			}
 

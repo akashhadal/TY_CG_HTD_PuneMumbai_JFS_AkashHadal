@@ -2,16 +2,16 @@ package com.capgemini.medicalshop.controller;
 
 import java.util.Scanner;
 
-import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.dao.MedicalShopDAO;
 import com.capgemini.medicalshop.exception.ExceptionsMethods;
 import com.capgemini.medicalshop.exception.OMSException;
-import com.capgemini.medicalshop.factory.medicalShopFactory;
+import com.capgemini.medicalshop.factory.MedicalShopFactory;
 
 public class AdminLogin {
 
 	public void aLogin() {
 		Scanner sc = new Scanner(System.in);
-		medicalShopDAO dao = medicalShopFactory.getInstance();
+		MedicalShopDAO dao = MedicalShopFactory.getInstance();
 
 		System.out.println("Press 1 to Login\nPress 2 to Register");
 		String choice = sc.nextLine();

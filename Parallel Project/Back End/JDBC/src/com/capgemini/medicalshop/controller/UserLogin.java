@@ -5,18 +5,18 @@ import java.util.Scanner;
 import com.capgemini.medicalshop.bean.ProductBean;
 import com.capgemini.medicalshop.bean.UserBean;
 import com.capgemini.medicalshop.dao.ProductDao;
-import com.capgemini.medicalshop.dao.medicalShopDAO;
+import com.capgemini.medicalshop.dao.MedicalShopDAO;
 import com.capgemini.medicalshop.exception.ExceptionsMethods;
 import com.capgemini.medicalshop.exception.OMSException;
 import com.capgemini.medicalshop.factory.ProductFactory;
-import com.capgemini.medicalshop.factory.medicalShopFactory;
+import com.capgemini.medicalshop.factory.MedicalShopFactory;
 
 public class UserLogin {
 
 	public void user() {
 		Scanner sc = new Scanner(System.in);
 
-		medicalShopDAO medicalShopDAO = medicalShopFactory.getInstance();
+		MedicalShopDAO medicalShopDAO = MedicalShopFactory.getInstance();
 		ProductDao productDao = ProductFactory.getProductInstance();
 
 		System.out.println("press 1 to See Product");
@@ -37,8 +37,15 @@ public class UserLogin {
 			ProductBean productBean = productDao.getAllProduct();
 		} else if (userButton == 2) {
 
-			System.out.println("Enter User Name");
-			String name = sc.nextLine();
+			System.out.println("Enter User Email");
+			String choiceEmail = sc.nextLine();
+			String userEmail = null;
+			try {
+				  userEmail = ExceptionsMethods.emailValidator(choiceEmail);
+			} catch (OMSException e) {
+				e.getMessage();
+				user();
+			}
 
 			System.out.println("Enter User Password");
 			String choicePassword = sc.nextLine();
@@ -50,7 +57,7 @@ public class UserLogin {
 				user();
 			};
 
-			int userBean2 = medicalShopDAO.loginUser(name, password);
+			int userBean2 = medicalShopDAO.loginUser(userEmail, password);
 
 			int getUserId = userBean2;
 			if (getUserId > 0) {

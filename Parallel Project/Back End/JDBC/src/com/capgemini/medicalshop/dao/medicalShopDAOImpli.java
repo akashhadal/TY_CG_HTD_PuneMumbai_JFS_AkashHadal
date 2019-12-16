@@ -13,7 +13,7 @@ import java.util.Scanner;
 import com.capgemini.medicalshop.bean.AdminBean;
 import com.capgemini.medicalshop.bean.UserBean;
 
-public class medicalShopDAOImpli implements medicalShopDAO {
+public class MedicalShopDAOImpli implements MedicalShopDAO {
 
 	FileReader reader = null;
 	Properties prop = null;
@@ -23,7 +23,7 @@ public class medicalShopDAOImpli implements medicalShopDAO {
 	Connection conn = null;
 	Scanner sc=new Scanner(System.in);
 
-	public medicalShopDAOImpli() {
+	public MedicalShopDAOImpli() {
 		try {
 			// Loading the Drivers
 			Class.forName("com.mysql.jdbc.Driver");
@@ -60,14 +60,13 @@ public class medicalShopDAOImpli implements medicalShopDAO {
 	}
 
 	@Override
-	public int loginUser(String name, String password) {
+	public int loginUser(String email, String password) {
 		int uID = 0;
 		try (Connection conn = DriverManager.getConnection(prop.getProperty("dbUrl"), prop.getProperty("user"),
 				prop.getProperty("password"));
 				PreparedStatement pstmt = conn.prepareStatement(prop.getProperty("query1"))) {
 
-			pstmt.setString(1, name);
-
+			pstmt.setString(1, email);
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
 			if (rs.next()) {

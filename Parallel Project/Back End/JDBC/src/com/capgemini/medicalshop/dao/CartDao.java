@@ -16,4 +16,6 @@ public interface CartDao {
 	public boolean addOrder(OrderBean orderBean);
 	
 	public List<OrderBean> list(int userId);
+	
+	public List<CartBean> showCart(int userId);
 }
