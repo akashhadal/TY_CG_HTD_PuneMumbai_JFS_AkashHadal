@@ -44,7 +44,7 @@ public class StepDefination {
 	@When("^the user clicks on the login Button$")
 	public void the_user_clicks_on_the_login_Button() throws Throwable {
 		driver.findElement(By.xpath("//button[text()='Submit']")).click();
-		Thread.sleep(10000);
+		Thread.sleep(3000);
 
 	}
 
