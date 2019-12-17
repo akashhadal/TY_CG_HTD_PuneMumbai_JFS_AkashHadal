@@ -2,8 +2,15 @@
     text-align: center;
 }
 
-.tbody{
+.table.thead.tr{
     background-color: lightblue;
+    font-weight: bolder;
+    font-style: italic;
+}
+
+.card{
+    /* background-image: url(/assets/images/21.jpg); */
+    background-color: lightgrey;
     font-weight: bolder;
     font-style: italic;
 }

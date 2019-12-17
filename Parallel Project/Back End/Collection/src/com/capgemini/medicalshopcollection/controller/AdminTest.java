@@ -22,9 +22,15 @@ public class AdminTest {
 
 	public void adminLogin() {	
 		System.out.println(
-				"\nEnter 'a' to see user Operations\nEnter 'b' to perform product operations\nEnter 'c' to See Discussion Board\nEnter 'd' to Logout");
-		char adminChoice = scanner.next().charAt(0); 
-		if (adminChoice == 'a') {
+				"\nEnter '1' to see user Operations\nEnter '2' to perform product operations\nEnter '3' to See Discussion Board\nEnter '4' to Logout");
+		String userChoice=scanner.nextLine();
+		int adminChoice=0 ;
+		try {
+			adminChoice= ExceptionsMethods.numberValidation(userChoice);
+		} catch (OMSException e) {
+			e.getMessage();
+		}
+		if (adminChoice == 1) {
 			//Operations perform on users
 			while (true) {
 				System.out.println("Enter 1 to Show All Users\nEnter 2 to Remove User\nEnter 3 to go back to menu");
@@ -70,7 +76,7 @@ public class AdminTest {
 				}// End of switch()
 			} // End of while()
 
-		} else if (adminChoice == 'b') {
+		} else if (adminChoice == 2) {
 			//Operations perform on product
 			while (true) {
 				System.out.println(
@@ -98,9 +104,12 @@ public class AdminTest {
 				}//End of switch
 				
 			} // End of while()
-		} else if(adminChoice == 'c') {
+		} else if(adminChoice == 3) {
 			//To show discussion board
 			
+		}else if (adminChoice==4) {
+			System.out.println("Logged Out.....");
+			System.exit(0);
 		}
 
 	}// End of afterAdminLogin()

@@ -13,7 +13,7 @@
         </div>
         <!-- Email Validation Starts -->
         <div *ngIf='userEmail.touched && userEmail.invalid'>
-            <p class="text text-dark" *ngIf='userEmail.errors.required'>
+            <p class="text text-danger" *ngIf='userEmail.errors.required'>
                 This Field is Mandatory
             </p>
             <p class="text text-warning" *ngIf='userEmail.errors.email'>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MedicalshopService } from '../medicalshop.service';
 import { User } from '../user';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,7 +19,7 @@ export class UserProfileComponent implements OnInit {
     role: null
   };
 
-  constructor(private medicalService: MedicalshopService) {
+  constructor(private medicalService: MedicalshopService, private router: Router) {
     const userDetails = JSON.parse(localStorage.getItem('user'));
     console.log(userDetails.loginBean.userId);
     const user = userDetails.loginBean.userId;

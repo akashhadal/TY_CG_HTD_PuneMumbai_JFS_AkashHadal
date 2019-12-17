@@ -1,4 +1,4 @@
-<div class="col-md-10 offset-1 mt-5">
+<!-- <div class="col-md-10 offset-1 mt-5">
     <table class="table table-bordered ">
         <thead class="thead-dark">
             <tr>
@@ -18,14 +18,14 @@
                 <td>{{user.role}}</td>
                 <td>{{user.userPassword}}</td>
                 <td>
-                    <!-- Button trigger modal -->
+                    
                     <button type="button" class="btn btn-dark" data-toggle="modal" 
                     data-target="#exampleModal"
                         (click)='selectUser(user)'>
                         Update
                     </button>
 
-                    <!-- Modal -->
+                    
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -84,4 +84,91 @@
             </tr>
         </tbody>
     </table>
-</div>
+</div> -->
+
+<div class="card offset-4 mt-3 mb-5" style="width: 350px; ">
+    <img class="img" src="data:image/jpeg;base64,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" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title" style="font-size: xx-large;text-align: center;">User Profile</h5>
+      <table *ngFor='let user of medicalService.userProfiles1'>
+        <thead>
+            <tr  style="font-weight: bolder;">User Id:- {{user.userId}}</tr>
+        </thead>
+        <thead>
+            <tr style="font-weight: bolder;">User Name:- {{user.userName}}</tr>
+        </thead>
+        <thead>
+            <tr style="font-weight: bolder;">User Email:-{{user.userEmail}}</tr>
+        </thead>
+        <thead>
+            <tr style="font-weight: bolder;">User Role:- {{user.role}}</tr>
+        </thead>
+        <thead>
+            <tr>
+                 <!-- Button trigger modal -->
+                 <button type="button" class="btn btn-dark" data-toggle="modal" 
+                 data-target="#exampleModal"
+                     (click)='selectUser(user)'>
+                     Update
+                 </button>
+
+                 <!-- Modal -->
+                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                         <div class="modal-content">
+                             <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">Update User Profile...</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                     (click)='getUser()'>
+                                     <span aria-hidden="true">&times;</span>
+                                 </button>
+                             </div>
+                             <div class="modal-body">
+                                 <form #updateUser="ngForm" (ngSubmit)='submitForm(updateUser)'>
+                                     <div class="alert alert-danger" *ngIf='error'>
+                                         {{error}}
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="userId">User Id</label>
+                                         <input type="text" class="form-control" name="userId" #userId='ngModel' [(ngModel)]="selectedUser.userId" required
+                                             placeholder="Enter User Id">
+                                     </div>
+                                     <div class="form-group"> 
+                                         <label for="userName">UserName</label>
+                                         <input type="text" name="userName" #userName='ngModel' [(ngModel)]="selectedUser.userName" required class="form-control"
+                                             placeholder="Enter Name">
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="userEmail">Email</label>
+                                         <input type="userEmail" name="userEmail" #userEmail='ngModel' [(ngModel)]="selectedUser.userEmail" required class="form-control"
+                                             placeholder="Enter Email">
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="role">Role</label>
+                                         <select class="custom-select" name="role" #role="ngModel" [(ngModel)]="selectedUser.role" required>
+                                             
+                                             <option>Admin</option>
+                                             <option>User</option>
+                                         </select>
+                                     </div>
+                                     <div class="form-group">
+                                         <label for="userPassword">Password</label>
+                                         <input type="userPassword" class="form-control" name="userPassword" #userPassword='ngModel' [(ngModel)]="selectedUser.userPassword" required
+                                             placeholder="Enter Password">
+                                     </div>
+                                     <div class="form-group">
+                                         <button type="submit" class="btn btn-outline-info float-right" [disabled]='updateUser.invalid'>
+                                             Submit
+                                         </button>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </tr>
+        </thead>
+      </table>
+    </div>
+  </div>

@@ -1,17 +1,15 @@
 package com.capgemini.medicalshopcollection.controller;
 
-import java.util.List;
 import java.util.Scanner;
 
-import com.capgemini.medicalshopcollection.beans.ProductBean;
 import com.capgemini.medicalshopcollection.beans.UserBean;
 import com.capgemini.medicalshopcollection.exception.ExceptionsMethods;
 import com.capgemini.medicalshopcollection.exception.OMSException;
-import com.capgemini.medicalshopcollection.main.MedicalMain;
 import com.capgemini.medicalshopcollection.service.MedicalServices;
 import com.capgemini.medicalshopcollection.service.MedicalservicesImpl;
 import com.capgemini.medicalshopcollection.service.ProductServices;
 import com.capgemini.medicalshopcollection.service.ProductServicesImpl;
+
 
 
 public class UserTest {

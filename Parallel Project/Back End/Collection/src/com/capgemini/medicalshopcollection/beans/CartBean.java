@@ -2,7 +2,7 @@ package com.capgemini.medicalshopcollection.beans;
 
 import java.io.Serializable;
 
-public class CartBean implements Serializable {
+public class CartBean  {
 	private int cartId;
 	private int userId;
 	private String userName;
