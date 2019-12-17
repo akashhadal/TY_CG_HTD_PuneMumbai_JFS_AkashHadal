@@ -34,7 +34,7 @@
                                     <form #reply="ngForm" (ngSubmit)="submitForm(reply)">
                                         <div class="form-group">
                                             <label for="userId">User Id</label>
-                                            <input type="number" name="userId" class="form-control"
+                                            <input type="text" name="userId" class="form-control"
                                                 placeholder="Enter user Id" #userId="ngModel"
                                                 [(ngModel)]="selectedMessage.userId" required>
                                         </div>

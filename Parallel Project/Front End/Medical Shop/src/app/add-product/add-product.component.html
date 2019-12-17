@@ -6,7 +6,7 @@
             </div>
             <div class="form-group">
                 <label for="productId">Product Id</label>
-                <input type="number" name="productId" #productId="ngModel" ngModel required class="form-control"
+                <input type="text" name="productId" #productId="ngModel" ngModel required class="form-control"
                     placeholder="Enter Product id">
             </div>
             <div class="form-group">
@@ -28,14 +28,9 @@
             </div>
             <div class="form-group">
                 <label for="price">Enter Price</label>
-                <input type="number" class="form-control" name="price" #price="ngModel" ngModel required
+                <input type="text" class="form-control" name="price" #price="ngModel" ngModel required
                     placeholder="Enter Price">
             </div>
-            <!-- <div class="form-group">
-                <label for="imgUrl">Product Img Url</label>
-                <input type="url" class="form-control" name="imgUrl" #imgUrl="ngModel" ngModel required
-                    placeholder="Enter Image Url">
-            </div> -->
             <div class="form-group">
                 <button type="submit" class="btn btn-success" [disabled]='addProduct.invalid'>
                     Submit</button>

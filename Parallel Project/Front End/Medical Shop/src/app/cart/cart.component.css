@@ -1,9 +1,9 @@
 .table{
     text-align: center;
+    
 }
 
 .tbody{
-    background-color: rgb(209, 175, 175);
-    
-    
+    background-color: lightblue;  
+    font-weight: bolder;
 }

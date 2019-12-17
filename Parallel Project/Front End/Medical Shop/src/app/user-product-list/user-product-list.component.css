@@ -3,6 +3,8 @@
 }
 
 .tbody{
-    background-color: rgb(163, 142, 142);
+    background-color: lightblue;
     text-size-adjust: 20px;
+    font-weight: bolder;
+    font-style: italic;
 }

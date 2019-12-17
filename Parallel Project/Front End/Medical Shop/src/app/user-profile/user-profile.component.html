@@ -19,7 +19,7 @@
                 <td>{{user.userPassword}}</td>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" 
+                    <button type="button" class="btn btn-dark" data-toggle="modal" 
                     data-target="#exampleModal"
                         (click)='selectUser(user)'>
                         Update
@@ -44,7 +44,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="userId">User Id</label>
-                                            <input type="number" class="form-control" name="userId" #userId='ngModel' [(ngModel)]="selectedUser.userId" required
+                                            <input type="text" class="form-control" name="userId" #userId='ngModel' [(ngModel)]="selectedUser.userId" required
                                                 placeholder="Enter User Id">
                                         </div>
                                         <div class="form-group"> 
