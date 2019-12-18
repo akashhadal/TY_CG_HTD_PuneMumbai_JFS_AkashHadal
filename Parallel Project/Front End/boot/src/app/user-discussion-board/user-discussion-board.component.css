@@ -1,0 +1,9 @@
+.table{
+    text-align: center;
+}
+
+.tbody{
+    background-color: lightblue ;
+    font-weight: bolder;
+    font-style: italic;
+}

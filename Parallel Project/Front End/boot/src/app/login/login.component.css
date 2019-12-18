@@ -1,0 +1,14 @@
+.container {
+    height: 400px;
+    widows: 400px;
+    background-image: url('/assets/images/13.jpg');
+}
+
+.card{
+    background-image: url(/assets/images/11.jpg);
+    background-size: contain;
+}
+
+.alert{
+    background-color: grey;
+}

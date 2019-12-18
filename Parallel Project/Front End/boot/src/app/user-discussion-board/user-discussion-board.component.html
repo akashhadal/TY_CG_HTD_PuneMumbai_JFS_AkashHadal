@@ -1,0 +1,59 @@
+<div class="col-md-10 offset-1 mt-5">
+    <table class="table table-bordered ">
+        <thead class="thead-dark">
+            <tr>
+                <th>User Id</th>
+                <th>User Message</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            <tr *ngFor='let messages of discussion.userMessageList'>
+                <td>{{messages.userId}}</td>
+                <td>{{messages.message}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-danger offset-1 mt-3" data-toggle="modal" data-target="#exampleModal">
+    Ask Query
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ask Query</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form #query="ngForm" (ngSubmit)="submitForm(query)">
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <input type="text" name="message" class="form-control"
+                        placeholder="Enter Message" #message="ngModel"
+                        ngModel required>
+                </div>
+                <div class="form-group">
+                    <label for="type">Type</label>
+                    <select class="custom-select" name="type" #type="ngModel" ngModel required>
+                        <option>Question</option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-outline-primary float-right"
+                        [disabled]="query.invalid">
+                        Submit
+                    </button>
+                    <button type="reset" class="btn btn-outline-danger  float-right">
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

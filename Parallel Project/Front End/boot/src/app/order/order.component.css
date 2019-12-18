@@ -1,0 +1,10 @@
+.table{
+    text-align: center;
+}
+
+.tbody{
+    background-color: lightblue;
+    text-size-adjust: 20px;
+    font-weight: bolder;
+    font-style: italic;
+}
