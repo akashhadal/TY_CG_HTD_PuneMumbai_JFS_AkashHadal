@@ -1,0 +1,68 @@
+<div id="login" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="login-cta">
+                        <h1>Login Here</h1>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-pull-7">
+                    <div class="login-form">
+                        <form #Form='ngForm' (ngSubmit)="loginForm(Form)">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="userEmail">User Email</label>
+                                        <input type="text" class="form-control" name="userEmail" #userEmail='ngModel' ngModel
+                                            placeholder="Your Email Id" required minlength="10" maxlength="35" ngModel email>
+                                    </div>
+                                  
+                                    <!-- Email Validation Starts -->
+                                    <div *ngIf='userEmail.touched && userEmail.invalid'>
+                                        <p class="text text-danger" *ngIf='userEmail.errors.required'>
+                                            Email is Mandatory
+                                        </p>
+                                        <p class="text text-warning" *ngIf='userEmail.errors.pattern'>
+                                            Email in not Valid eg.(abc@gmail.com)
+                                        </p>
+                                        <p class="text text-warning" *ngIf='userEmail.errors.minlength'>
+                                            Email minimum length shoul be 8 letters
+                                        </p>
+                                        <p class="text text-warning" *ngIf='userEmail.errors.maxlength'>
+                                            Email maximum length reached
+                                        </p>
+                                    </div>
+                                      <!-- Email Validation Ends -->
+                                  
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" name="password" #password='ngModel' ngModel  required id="password"
+                                            placeholder="Your password" class="form-control" minlength="8" maxlength="35">
+                                    </div>
+                                 <!-- password Validation Starts -->
+                                 <div *ngIf='password.touched && password.invalid'>
+                                    <p class="text text-danger" *ngIf='password.errors.required'>
+                                       Password is Mandatory
+                                    </p>
+                                    <p class="text text-danger" *ngIf='password.errors.minlength'>
+                                        Password must be 8 characters
+                                    </p>
+                                    <p class="text text-danger" *ngIf='password.errors.maxlength'>
+                                        Password maximum length reached
+                                    </p>
+                                </div>
+                                  <!-- password Validation Ends -->
+                                </div>
+                                <div class="card-footer">
+                                    <a routerLink="/userRegister" style="color: red;">Create a  new account?</a>
+                                    <button class="btn btn-primary float-right" type="submit" [disabled]='Form.invalid'>Sign in</button>
+                                </div>
+                            </div> 
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

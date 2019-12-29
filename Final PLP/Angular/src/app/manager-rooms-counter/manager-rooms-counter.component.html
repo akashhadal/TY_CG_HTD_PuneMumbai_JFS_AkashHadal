@@ -1,0 +1,97 @@
+<div class="text text-success" style="font-weight: bolder; margin-left: 10px;" *ngIf='statusCode===201'>{{message}}
+</div>
+<div class="text text-danger" style="font-weight: bolder;  margin-left: 10px;" *ngIf='statusCode===401'>{{message}}
+</div>
+<div class="col-md-3 mt-3 card card-body float-left" style="margin-left: 60px;"
+    *ngFor='let room of hotelService.roomArray, index as i'>
+    <img src="{{room.image}}" style="height: 175px;" alt="">
+    <h6>Room Id: {{room.roomId}} </h6>
+    <h6>Hotel Id: {{room.hotelId}}</h6>
+    <h6>Room Rent: {{room.roomRent}}</h6>
+    <h6>Room Type: {{room.roomType}}</h6>
+    <h6>Room Capacity: {{room.roomCapacity}}</h6>
+    <h6>Room Status: {{room.roomStatus}}</h6>
+    <h6>Room Facility: {{room.roomFacility}}</h6>
+    <div class="row">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+            (click)="selectRoom(room)">
+            Update
+        </button>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Update Room Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            (click)="hotelService.getRoomList()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form #updateRoom="ngForm" (ngSubmit)="updateRoomForm(updateRoom)">
+                            <div class="form-group">
+                                <label for="roomRent">Room Rent</label>
+                                <input type="text" name="roomRent" class="form-control" #roomRent="ngModel"
+                                    [(ngModel)]="selectedRoom.roomRent" required>
+                                <div *ngIf='roomRent.touched && roomRent.invalid'>
+                                    <p class="alert alert-danger" *ngIf='roomRent.errors.required'>Room
+                                        rent is mandatory</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomType">Room Type</label>
+                                <input type="text" name="roomType" class="form-control" #roomType="ngModel"
+                                    [(ngModel)]="selectedRoom.roomType" required>
+                                <div *ngIf='roomType.touched && roomType.invalid'>
+                                    <p class="alert alert-danger" *ngIf='roomType.errors.required'>Room type
+                                        is mandatory</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomCapacity">Room Capacity</label>
+                                <input type="text" name="roomCapacity" class="form-control" #roomCapacity="ngModel"
+                                    [(ngModel)]="selectedRoom.roomCapacity" required>
+                                <div *ngIf='roomCapacity.touched && roomCapacity.invalid'>
+                                    <p class="alert alert-danger" *ngIf='roomCapacity.errors.required'>Room capacity is
+                                        mandatory</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomStatus">Room Status</label>
+                                <input type="text" name="roomStatus" class="form-control" #roomStatus="ngModel"
+                                    [(ngModel)]="selectedRoom.roomStatus" required>
+                                <div *ngIf='roomStatus.touched && roomStatus.invalid'>
+                                    <p class="alert alert-danger" *ngIf='roomStatus.errors.required'>
+                                        Room status is
+                                        mandatory</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="roomFacility">Room Facility</label>
+                                <input type="text" name="roomFacility" class="form-control" #roomFacility="ngModel"
+                                    [(ngModel)]="selectedRoom.roomFacility" required>
+                                <div *ngIf='roomFacility.touched && roomFacility.invalid'>
+                                    <p class="alert alert-danger" *ngIf='roomFacility.errors.required'>
+                                        Room facility is
+                                        mandatory</p>
+                                </div>
+                            </div>
+                            <div class="btn-group float-right">
+                                <button type="reset" class="btn btn-outline-dark">Reset
+                                </button>
+                                <button type="submit" class="btn btn-outline-primary"
+                                    [disabled]='updateRoom.invalid'>Update
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger offset-3" (click)="deleteRoom(room.RoomId)"><img
+                src="/assets/icons/trash-fill.svg" alt="" width="32" height="32" title="Trash"
+                (click)="deleteRoom(room.roomId)"></button>
+    </div>
+</div>

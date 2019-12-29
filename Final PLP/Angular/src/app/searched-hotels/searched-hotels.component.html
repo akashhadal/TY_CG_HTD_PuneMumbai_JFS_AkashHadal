@@ -1,0 +1,7 @@
+<div class="col-md-3 float-left force-overflow card card-body">
+    <div class="card card-body" *ngFor='let hotel of hotelService.searchedHotel, index as i'>
+        <img src="{{hotel.image}}" class="card-img-top" alt="" (click)='selectHotel(hotel)'>
+        <h4 class="text-center">{{hotel.hotelName}}</h4>
+    </div>
+</div>
+<app-searched-hotels-details [hotelDetails]='selectedHotel'></app-searched-hotels-details>

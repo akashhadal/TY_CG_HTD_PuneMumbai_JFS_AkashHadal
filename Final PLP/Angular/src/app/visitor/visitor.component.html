@@ -1,0 +1,27 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-3 ">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" [(ngModel)]='search'
+                        style="background-color:blanchedalmond;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"><img src="/assets/icons/search.svg" alt=""></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-3 card card-body float-left" style="margin-left: 60px;"
+        *ngFor='let hotel of hotelService.hotelArray | filter: search, index as i'>
+        <img src="{{hotel.image}}" style="height: 175px;" alt="">
+        <h3 style="text-align: center;">{{hotel.hotelName}} </h3>
+        <h6>Location: {{hotel.location}}</h6>
+        <h6>Available AC Rooms: {{hotel.availableAcRoom}}</h6>
+        <h6>Available Non-AC Rooms: {{hotel.availableNonAcRoom}}</h6>
+        <button type="submit" class="btn btn-primary" style="margin-left: 20px;" (click)='bookNow()'>
+            Book Now
+        </button>
+    </div>

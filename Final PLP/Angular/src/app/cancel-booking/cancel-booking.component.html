@@ -1,0 +1,40 @@
+<div id="booking" class="section">
+    <div class="section-center">
+        <div class="container">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Booking Id</th>
+                        <th>Hotel Id</th>
+                        <th>Room Id</th>
+                        <th>User Id</th>
+                        <th>Amount</th>
+                        <th>Payment Status</th>
+                        <th>Mode of Payment</th>
+                        <th>Checkin Date</th>
+                        <th>Checkout Date</th>
+                        <th>Cancel Booking</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: white;">
+                    <tr *ngFor='let user of bookedRoomListDisplay'>
+                        <td>{{user.bookingId}}</td>
+                        <td>{{user.hotelId}}</td>
+                        <td>{{user.roomId}}</td>
+                        <td>{{user.userId}}</td>
+                        <td>{{user.roomAmount}}</td>
+                        <td>{{user.paymentStatus}}</td>
+                        <td>{{user.modeOfPayment}}</td>
+                        <td>{{user.checkInDate}}</td>
+                        <td>{{user.checkOutDate}}</td>
+                        <td>
+                            <button type="submit" class="btn btn-danger" (click)='cancelBooking(user)'>
+                                Cancel
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<!-- <div class="card offset-4 mt-3 mb-5" style="width: 350px; ">
+    <img class="img"
+        src="https://cdn.pixabay.com/photo/2012/04/26/19/47/man-42934__340.png"
+        class="card-img-top">
+    <div class="card-body">
+        <h5 class="card-title" style="font-size: xx-large;text-align: center;">User Profile</h5>
+        <t
+                <h6 style="font-weight: bolder;">User Id:- {{userProfile.use
+                <h6 style="font-weight: bolder;">User Name:- {{userProfile.userN
+                <h6 style="font-weight: bolder;">User Email:-{{userProfile.userEm
+                <h6 style="font-weight: bolder;">User Password:- {{userProfile.passwo
+                <h6 style="font-weight: bolder;">Nationality:- {{userProfile.nationali
+                <h6 style="font-weight: bolder;">Address:- {{userProfile.addre
+                <h6 style="font-weight: bolder;">Phone No. :- {{userProfile.phoneNumber}}<
+        </table>
+    </div>
+</div> -->
+<div id="userProfile" class="section">
+    <div class="section-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-push-5">
+                    <div class="userProfile-cta">
+                        <!-- <img class="img" src="https://cdn.pixabay.com/photo/2012/04/26/19/47/man-42934__340.png"
+                            style="height: 200px; width: 200px;" class="card-img-top"> -->
+                        <h1>User Profile</h1>
+                    </div>
+                </div>
+                <div class="col-md-5 col-md-pull-7">
+                    <div class="userProfile-form">
+                        <!-- <h6 style="font-weight: bolder;">User Id:- {{userProfile.userId}}</h6> -->
+                        <h6 style="font-weight: bolder;">User Name:- {{userProfile.userName}}</h6>
+                        <h6 style="font-weight: bolder;">User Email:-{{userProfile.userEmail}}</h6>
+                        <!-- <h6 style="font-weight: bolder;">User Password:- {{userProfile.password}}</h6> -->
+                        <h6 style="font-weight: bolder;">Nationality:- {{userProfile.nationality}}</h6>
+                        <h6 style="font-weight: bolder;">Address:- {{userProfile.address}}</h6>
+                        <h6 style="font-weight: bolder;">Phone No. :- {{userProfile.phoneNumber}}</h6>
+                        <button type="submit" class="btn btn-info" (click)='updateProfile(userProfile)'>Update Profile</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

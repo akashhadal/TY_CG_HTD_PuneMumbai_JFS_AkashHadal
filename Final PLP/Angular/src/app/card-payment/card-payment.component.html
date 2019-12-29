@@ -1,0 +1,115 @@
+<div class="col-md-4 offset-4 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>Payment</h3>
+        </div>
+        <div class="card-body">
+            <form #paymentForm='ngForm' (ngSubmit)='payment(paymentForm)'>
+                <div class="form-group">
+                    <label for="name">Card Holder's Name:</label>
+                    <input type="text" placeholder="Enter the holders name..." name="name" #name='ngModel' ngModel
+                        required pattern="[a-zA-z]+([\s][a-zA-z]+)*" minlength="3" maxlength="35" class="form-control">
+                    <div *ngIf='name.touched && name.invalid'>
+                        <p class="text text-danger" *ngIf='name.errors.required'>This field is mandatory</p>
+                        <p class="text text-danger" *ngIf='name.errors.minlength'>Minimum 6 character required
+                        </p>
+                        <p class="text text-danger" *ngIf='name.errors.maxlength'>Maximum 35 characters required
+                        </p>
+                        <p class="text text-danger" *ngIf='name.errors.pattern'>This Field accept only characters
+                        </p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount To Pay:</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">₹</span>
+                        </div>
+                        <input type="number" class="form-control" name="amount" id="amount" required #amount='ngModel'
+                            [(ngModel)]="totalAmount" disabled>
+                        <div class="input-group-append">
+                            <span class="input-group-text">.00</span>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardNo">Card Number:</label>
+                        <input type="text" #cardNo='ngModel' ngModel placeholder="Enter the number..." name="cardNo"
+                            required minlength="16" maxlength="16" cardNo pattern="[4-9]{1}[0-9]{15}"
+                            class="form-control">
+                        <div *ngIf='cardNo.touched && cardNo.invalid'>
+                            <p class="text text-danger" *ngIf='cardNo.errors.required'>This field is mandatory
+                            </p>
+                            <p class="text text-danger" *ngIf='cardNo.errors.pattern'>This field accept only Numbers and
+                                Card Number should start from 4-9 only.
+                            </p>
+                            <p class="text text-danger" *ngIf='cardNo.errors.maxlength'>maximum 16 numbers required
+                            </p>
+                            <p class="text text-danger" *ngIf='cardNo.errors.minlength'>Minimum 16 numbers required
+                            </p>
+                            <p class="text text-danger" *ngIf='cardNo.errors.cardNo'>This Field accept only numbers
+                            </p>
+                        </div>
+                        <br>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="ExpYear">CVV</label>
+                                <input type="text" placeholder="cvv" name="cvv" #cvv='ngModel' ngModel required
+                                    pattern="\d{3}" maxlength="3" minlength="3" class="form-control">
+                                <div *ngIf='cvv.touched && cvv.invalid'>
+                                    <p class="text text-danger" *ngIf='cvv.errors.required'>This field is mandatory
+                                    </p>
+                                    <p class="text text-danger" *ngIf='cvv.errors.pattern'>This field accept only
+                                        Numbers.
+                                    </p>
+                                    <p class="text text-danger" *ngIf='cvv.errors.maxlength'>maximum 3 numbers required
+                                    </p>
+                                    <p class="text text-danger" *ngIf='cvv.errors.minlength'>Minimum 3 numbers required
+                                    </p>
+                                    <!-- <p class="text text-danger" *ngIf='cvv.errors.cardNo'>This Field accept only numbers
+                                    </p> -->
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="ExpYear">Expire</label>
+                                <select id="ExpYear" class="form-control" name="expire" #expire='ngModel' ngModel required>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="months">Expire</label>
+                                <select id="months" class="form-control" required name="expiremonth" #expiremonth='ngModel' ngModel>
+                                    <option selected>Months</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="btn btn-primary btn-lg btn-block" (click)="payment(paymentForm)"
+                [disabled]='paymentForm.invalid'>Confirm</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block">Cancel</button>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="col-md-8 float-right offset-1">
+    <img src="{{hotelDetails.image}}" class="card-img-top" height='300' width="300" alt="">
+    <h1 class="text-center">{{hotelDetails.hotelName}}</h1>
+    <p>Location: {{hotelDetails.location}}</p>
+    <p>hotel Id: {{hotelDetails.hotelId}}</p>
+    <p>Available Ac Rooms: {{hotelDetails.availableAcRoom}}</p>
+    <p>Available Non Ac Rooms:{{hotelDetails.availableNonAcRoom}}</p>
+    <button type="submit" class="btn btn-success offset-5" (click)='book(hotelDetails)'>Book Room</button>
+</div>

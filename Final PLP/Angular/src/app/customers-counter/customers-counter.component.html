@@ -1,0 +1,30 @@
+<div class="container mt-4">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Booking Id</th>
+                <th>Hotel Id</th>
+                <th>Room Id</th>
+                <th>User Id</th>
+                <th>Amount</th>
+                <th>Payment Status</th>
+                <th>Mode of Payment</th>
+                <th>Checkin Date</th>
+                <th>Checkout Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let user of userArray'>
+                <td>{{user.bookingId}}</td>
+                <td>{{user.hotelId}}</td>
+                <td>{{user.roomId}}</td>
+                <td>{{user.userId}}</td>
+                <td>{{user.roomAmount}}</td>
+                <td>{{user.paymentStatus}}</td>
+                <td>{{user.modeOfPayment}}</td>
+                <td>{{user.checkInDate}}</td>
+                <td>{{user.checkOutDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

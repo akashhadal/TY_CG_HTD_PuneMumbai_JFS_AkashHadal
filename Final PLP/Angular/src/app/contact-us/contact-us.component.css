@@ -1,0 +1,59 @@
+.section {
+	position: relative;
+	height: 600px;
+}
+
+.section .section-center {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+#contact {
+	font-family: 'Montserrat', sans-serif;
+	background-image: url(https://cdn.pixabay.com/photo/2015/07/02/10/29/swimming-828795__340.jpg);
+	background-size: cover;
+	background-position: center;
+}
+body{
+    background-color: #25274d;
+}
+.contact{
+    padding: 4%;
+    height: 550px;
+}
+.col-md-3{
+    background: lightskyblue;
+    padding: 4%;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+.contact-info{
+    margin-top:10%;
+}
+.contact-info img{
+    margin-bottom: 15%;
+}
+.contact-info h2{
+    margin-bottom: 10%;
+}
+.col-md-9{
+    background: #fff;
+    padding: 3%;
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+.contact-form label{
+    font-weight:600;
+}
+.contact-form button{
+    background: #25274d;
+    color: #fff;
+    font-weight: 600;
+    width: 25%;
+}
+.contact-form button:focus{
+    box-shadow:none;
+}

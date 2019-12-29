@@ -1,0 +1,32 @@
+  .section {
+    position: relative;
+    height: 600px;
+  }
+  
+  .section .section-center {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+  
+  #home {
+    font-family: 'Montserrat', sans-serif;
+    background-image: url(https://cdn.pixabay.com/photo/2015/07/02/10/29/swimming-828795__340.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+    
+  .home-cta {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .home-cta h1 {
+    font-size: 70px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+  }

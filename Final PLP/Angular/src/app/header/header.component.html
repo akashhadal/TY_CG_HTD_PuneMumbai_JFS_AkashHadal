@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+       <img routerLink="/" src="/assets/icons/hotel-solid.svg" alt="" height="40px">
+    <a class="navbar-brand" routerLink="/">Travelocity</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/">Home<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active" *ngIf='!auth.isLoggedIn()'>
+                <a class="nav-link" routerLink="/visitor">Hotels</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isUser()'>
+                <a class="nav-link" routerLink="/bookings">Hotel Booking</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isUser()'>
+                <a class="nav-link" routerLink="/userProfile">Profile</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" routerLink="/services">Services</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isAdmin()'>
+                <a class="nav-link" routerLink="/adminControl">Admin</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isAdmin()'>
+                <a class="nav-link" routerLink="/addHotel">Add Hotel</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isManager()'>
+                <a class="nav-link" routerLink="/addRoom">Add Room</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isManager()'>
+                <a class="nav-link" routerLink="/managerControl">Manager</a>
+            </li>
+            <li class="nav-item active" *ngIf='auth.isLoggedIn() && isUser()'>
+                <a class="nav-link" routerLink="/bookingHistory">Booking History</a>
+            </li>
+            <li class="nav-item active" >
+                <a class="nav-link" routerLink="/contactus">Contact Us</a>
+            </li>
+            <li class="nav-item active" *ngIf='!auth.isLoggedIn()'>
+                <a class="nav-link" routerLink="/userRegister">Sign up</a>
+            </li>
+            <li class="nav-item active" *ngIf='!auth.isLoggedIn()'>
+                <a class="nav-link" routerLink="/sign-in">Sign in</a>
+            </li>
+            <li class="nav-item" *ngIf='auth.isLoggedIn()'>
+                <button (click)="logout()" class="btn btn-danger">
+                    Logout
+                </button>
+            </li>
+        </ul>
+    </div>
+</nav>

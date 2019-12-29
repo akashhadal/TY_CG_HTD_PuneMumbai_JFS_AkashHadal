@@ -1,0 +1,50 @@
+.section {
+	position: relative;
+	height: 600px;
+}
+
+.section .section-center {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+#userProfile {
+	font-family: 'Montserrat', sans-serif;
+	background-image: url(https://cdn.pixabay.com/photo/2015/07/02/10/29/swimming-828795__340.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+.userProfile-form {
+	background-color: #fff;
+	padding: 50px 20px;
+	-webkit-box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 5px 20px -5px rgba(0, 0, 0, 0.3);
+	border-radius: 4px;
+}
+
+.userProfile-form .submit-btn:hover,
+.userProfile-form .submit-btn:focus {
+	opacity: 0.9;
+}
+
+.userProfile-cta {
+	margin-top: 100px;
+	margin-bottom: 30px;
+}
+
+.userProfile-cta h1 {
+	font-size: 65px;
+	text-transform: uppercase;
+	color: #fff;
+	font-weight: 700;
+}
+
+.userProfile-cta p {
+	font-size: 16px;
+	color: rgba(255, 255, 255, 0.8);
+}

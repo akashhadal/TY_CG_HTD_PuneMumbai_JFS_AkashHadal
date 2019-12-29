@@ -1,0 +1,67 @@
+<div id="addRoom" class="section">
+    <div class="section-center">
+<div class="col-md-4 offset-4 mt-2">
+    <div class="hotel-form card card-body">
+        <form #addRoom="ngForm" (ngSubmit)="room(addRoom)">
+            <h3 >Room Details</h3>
+            <div class="form-group">
+                <span class="form-label">Room rent</span>
+                <input class="form-control" name="roomRent" #roomRent="ngModel" ngModel type="text"
+                    placeholder="Enter room rent">
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select name="roomType" id="roomType" #roomType='ngModel' ngModel class="form-control" required placeholder="Enter Room Type">
+                <option value="1">1 BED</option>
+                <option value="2">2 BED</option>
+                <option value="3">3 BED</option>
+                </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                            <label for="roomCapacity">Room Capacity</label>
+            <select name="capacity" id="roomCapacity" #roomCapacity='ngModel' ngModel class="form-control" required placeholder="Enter Room Capacity">
+                <option value="1">1 Person</option>
+                <option value="2">2 Person</option>
+                <option value="3">3 Person</option>
+                 <option value="2">4 Person</option>
+                <option value="3">5 Person</option>
+                </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="roomStatus">Room Status</label>
+            <select name="roomStatus" id="roomStatus" #roomStatus='ngModel' ngModel class="form-control" required placeholder="Enter Room Status">
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="form-label">Hotel Id</span>
+                <input class="form-control" name="hotelId" #hotelId="ngModel" [(ngModel)]='this.hotelService.hotelId' type="text"
+                    placeholder="Enter Hotel Id">
+            </div>
+            <div class="form-group">
+                <label for="roomFacility">Room Facility</label>
+                        <select name="roomFacility" id="roomFacility" #roomFacility='ngModel' ngModel class="form-control" required placeholder="Enter Room Type">
+                <option value="AC">AC</option>
+                <option value="NON-AC">NON AC</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="form-label">Image URL</span>
+                <input class="form-control" name="image" #image="ngModel" ngModel type="text"
+                    placeholder="Enter Imagre Url">
+            </div>
+            <div class="form-btn">
+                <button  type="submit" class="btn btn-outline-primary" [disabled]="addRoom.invalid">Add Room</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>

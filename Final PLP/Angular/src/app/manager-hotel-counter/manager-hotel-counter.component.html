@@ -1,0 +1,102 @@
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 offset-3 ">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" [(ngModel)]='search'
+                        style="background-color:blanchedalmond;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <span class="glyphicon glyphicon-search"><img src="/assets/icons/search.svg" alt=""></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-3 card card-body float-left" style="margin-left: 60px;"
+        *ngFor='let hotel of hotelService.hotelArray | filter: search, index as i'>
+        <img src="{{hotel.image}}" style="height: 175px;" alt="">
+        <h3 style="text-align: center;">{{hotel.hotelName}} </h3>
+        <h6>Location: {{hotel.location}}</h6>
+        <h6>Available AC Rooms: {{hotel.availableAcRoom}}</h6>
+        <h6>Available Non-AC Rooms: {{hotel.availableNonAcRoom}}</h6>
+        <div class="row">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#exampleModal"
+                (click)="selectHotel(hotel)" style="margin-left: 20px;">
+                Update
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Hotel Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                (click)="hotelListForManager()">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form #updateHotel="ngForm" (ngSubmit)="updateHotelForm(updateHotel)">
+                                <div class="form-group">
+                                    <label for="hotelName">Hotel Name</label>
+                                    <input type="text" name="hotel_name" class="form-control" #hotelName="ngModel"
+                                        [(ngModel)]="selectedHotel.hotelName" required>
+                                    <div *ngIf='hotelName.touched && hotelName.invalid'>
+                                        <p class="alert alert-danger" *ngIf='hotelName.errors.required'>Hotel
+                                            name is mandatory</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="location">Location</label>
+                                    <input type="text" name="location" class="form-control" #location="ngModel"
+                                        [(ngModel)]="selectedHotel.location" required>
+                                    <div *ngIf='location.touched && location.invalid'>
+                                        <p class="alert alert-danger" *ngIf='location.errors.required'>Location
+                                            is mandatory</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="availableAcRoom">Available Ac Rooms</label>
+                                    <input type="number" name="availableAcRoom" class="form-control"
+                                        #availableAcRoom="ngModel" [(ngModel)]="selectedHotel.availableAcRoom" required>
+                                    <div *ngIf='availableAcRoom.touched && availableAcRoom.invalid'>
+                                        <p class="alert alert-danger" *ngIf='availableAcRoom.errors.required'>This
+                                            field is
+                                            mandatory</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="availableNonAcRoom">Available Non-AC Rooms</label>
+                                    <input type="number" name="availableNonAcRoom" class="form-control"
+                                        #availableNonAcRoom="ngModel" [(ngModel)]="selectedHotel.availableNonAcRoom"
+                                        required>
+                                    <div *ngIf='availableNonAcRoom.touched && availableNonAcRoom.invalid'>
+                                        <p class="alert alert-danger" *ngIf='availableNonAcRoom.errors.required'>
+                                            This field is
+                                            mandatory</p>
+                                    </div>
+                                </div>
+                                <div class="btn-group float-right">
+                                    <button type="reset" class="btn btn-outline-dark">Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-outline-primary"
+                                        [disabled]='updateHotel.invalid'>Update
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                div
+            </div>
+            <button type="submit" class="btn btn-danger " (click)="deleteHotel(hotel.hotelId)" style="margin-left: 20px;"><img
+                    src="/assets/icons/trash-fill.svg" alt="" width="32" height="32" title="Trash"></button>
+                    <button type="submit" class="btn btn-primary" style="margin-left: 20px;" (click)='addRoom(hotel.hotelId)'>
+                        Add Room
+                    </button>
+        </div>
+    </div>
